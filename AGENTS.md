@@ -74,9 +74,19 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   snapshot + drop-cap). The hero/marquee break out of `.container` with
   negative margins that cancel `main`'s padding — they're direct children of
   `main`, not inside `.container`.
-- **Phasing:** Phase 1 (shared foundation) + homepage hero are DONE. Still to
-  do: film page (cinematic/filmstrip), music (jukebox cards), and collage
-  passes for words/dates/media/epk/merch.
+- **Interior page banner:** `.page-hero` is a shorter `.hero` (static image,
+  no parallax — JS parallax is scoped to `.hero .hero-img` so it only touches
+  the homepage). Reuses `.hero-img/-tint/-shade/-inner/-title/-kicker`.
+- **Music jukebox:** `.album` cards (vinyl + `.album-meta`/`h2` + the original
+  SoundCloud `.sc-embed` iframes preserved verbatim). `.vinyl` is pure CSS
+  (grooves + `::after` red label / optional `<img>` cover + `::before`
+  spindle); it spins on `.album:hover`.
+- **Film cinema:** `.filmframe` (letterboxed title stage, full-bleed via
+  negative margin like the hero), `.trailer-stage` (framed video), `.filmstrip`
+  (perforated horizontal scroller — its `a` tags are wired into the lightbox
+  selector in main.js), `.credits` (end-title layout). Bios stay as `.split`.
+- **Phasing:** Phase 1 (shared foundation) + homepage hero + **Phase 2 (film +
+  music)** are DONE. Still to do: collage passes for words/dates/media/epk/merch.
 - Nav collapses to a menu button under 700px; between 700–1024px the nav type
   tightens so the full bar fits one line. Active page marked with
   `aria-current="page"` (set per page, remember it when adding pages).

@@ -63,7 +63,9 @@
     });
   }
 
-  var heroImg = document.querySelector(".hero-img");
+  // Parallax only the full-height homepage hero; interior `.page-hero`
+  // banners are short, so a moving image would expose their edges.
+  var heroImg = document.querySelector(".hero .hero-img");
   if (heroImg && !reduceMotion) {
     var ticking = false;
     window.addEventListener("scroll", function () {
@@ -161,7 +163,7 @@
 
   /* ---------- Lightbox ---------- */
   var links = Array.prototype.slice.call(
-    document.querySelectorAll(".gallery a, .carousel-track a, a[data-lightbox]")
+    document.querySelectorAll(".gallery a, .carousel-track a, .filmstrip a, a[data-lightbox]")
   );
   if (!links.length) return;
 

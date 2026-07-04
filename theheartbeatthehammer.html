@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,21 +37,23 @@
   </nav>
 
   <main id="main">
+
+    <div class="filmframe">
+      <img src="images/thth3.jpg" alt="The Heartbeat, The Hammer — film title art" width="960" height="1103">
+      <p class="film-kicker">A Film by Galen Cassidy Peria</p>
+    </div>
+
     <div class="container">
 
-      <section class="center">
-        <img class="feature-img" src="images/thth3.jpg" alt="The Heartbeat, The Hammer — film title art" width="960" height="1103">
-      </section>
-
-      <hr class="redline">
-
       <section>
-        <h2 class="center">Official Trailer</h2>
-        <div class="video-embed">
-          <video controls preload="none" poster="video/heartbeat-trailer-poster.jpg">
-            <source src="video/heartbeat-trailer.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="trailer-stage">
+          <p class="trailer-label">Official Trailer</p>
+          <div class="video-embed">
+            <video controls preload="none" poster="video/heartbeat-trailer-poster.jpg">
+              <source src="video/heartbeat-trailer.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
         <div style="height:2rem;"></div>
         <p class="lede">No one has seen Lee in years. Then one snowy night just before Christmas he arrives at the doorstep of a friend. Next comes a visit to his parents. No one is quite sure where he has been and Lee seems to be unsure himself. As he traverses the country on a poetic and uncertain ritual-journey in pursuit of something lost, we follow him through the key places and among the important family and friends of his former life. &ldquo;The Heartbeat, The Hammer&rdquo; is the story of one man&rsquo;s journey in search of not himself, but everything else.</p>
@@ -102,25 +104,19 @@
 
       <hr class="redline">
 
-      <section>
-        <div class="split">
-          <div>
-            <h2 class="center">Credits</h2>
-          </div>
-          <div class="muted">
-            <p><strong>PRODUCED BY</strong><br>Galen Cassidy Peria and Hugh Mackey</p>
-            <p><strong>WRITTEN &amp; DIRECTED BY</strong><br>Galen Cassidy Peria</p>
-            <p><strong>DIRECTOR OF PHOTOGRAPHY / CAMERA</strong><br>Hugh Mackey</p>
-            <p><strong>MUSIC COMPOSED BY</strong><br>Galen Cassidy Peria and Shane Sayers</p>
-          </div>
-        </div>
+      <section class="credits">
+        <h2 class="center">Credits</h2>
+        <div class="credit"><span class="role">Produced By</span><span class="who">Galen Cassidy Peria &amp; Hugh Mackey</span></div>
+        <div class="credit"><span class="role">Written &amp; Directed By</span><span class="who">Galen Cassidy Peria</span></div>
+        <div class="credit"><span class="role">Director of Photography / Camera</span><span class="who">Hugh Mackey</span></div>
+        <div class="credit"><span class="role">Music Composed By</span><span class="who">Galen Cassidy Peria &amp; Shane Sayers</span></div>
       </section>
 
       <hr class="redline">
 
       <section>
         <h2 class="center">Stills</h2>
-        <div class="gallery">
+        <div class="filmstrip">
           <a href="images/untitled-1-276-1_orig.jpg"><img src="images/untitled-1-276-1_orig.jpg" alt="Film still — The Heartbeat, The Hammer" loading="lazy"></a>
           <a href="images/untitled-2-83-1_orig.jpg"><img src="images/untitled-2-83-1_orig.jpg" alt="Film still — The Heartbeat, The Hammer" loading="lazy"></a>
           <a href="images/untitled-1-339-1_orig.jpg"><img src="images/untitled-1-339-1_orig.jpg" alt="Film still — The Heartbeat, The Hammer" loading="lazy"></a>
@@ -130,6 +126,7 @@
           <a href="images/untitled-1-364-1_orig.jpg"><img src="images/untitled-1-364-1_orig.jpg" alt="Film still — The Heartbeat, The Hammer" loading="lazy"></a>
           <a href="images/untitled-1-120-1_orig.jpg"><img src="images/untitled-1-120-1_orig.jpg" alt="Film still — The Heartbeat, The Hammer" loading="lazy"></a>
         </div>
+        <p class="filmstrip-hint">&larr; Drag the strip &middot; click a frame to enlarge &rarr;</p>
       </section>
 
     </div>
@@ -139,6 +136,6 @@
     <div class="container">&copy; Galen Cassidy Peria, 2026</div>
   </footer>
 
-  <script src="js/main.js?v=8"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>
