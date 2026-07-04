@@ -13,8 +13,8 @@
   <link rel="icon" href="images/galenlogo4.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -42,26 +42,50 @@
   </nav>
 
   <main id="main">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-img" src="images/duke-by-daniel_orig.jpg" alt="Duke Aeroplane in sunglasses and a wide-brimmed hat" width="1100" height="733">
+      <div class="hero-tint" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Galen Cassidy Peria &mdash; New Orleans, Louisiana</p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="line"><span>Not Well Known,</span></span>
+          <span class="line"><span>Just Here <span class="accent">on Loan.</span></span></span>
+        </h1>
+      </div>
+      <a class="hero-scroll" href="#lyric" aria-label="Scroll down">&darr; Read on</a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Song-finder</span><span class="sep">&#9670;</span><span>Wordsmith</span><span class="sep">&#9670;</span><span>Filmmaker</span><span class="sep">&#9670;</span><span>Student of the Cards</span><span class="sep">&#9670;</span><span>Excitable Drinker</span><span class="sep">&#9670;</span><span>Now Get the Hell Off the Internet</span><span class="sep">&#9670;</span><span>Song-finder</span><span class="sep">&#9670;</span><span>Wordsmith</span><span class="sep">&#9670;</span><span>Filmmaker</span><span class="sep">&#9670;</span><span>Student of the Cards</span><span class="sep">&#9670;</span><span>Excitable Drinker</span><span class="sep">&#9670;</span><span>Now Get the Hell Off the Internet</span><span class="sep">&#9670;</span>
+      </div>
+    </div>
+
     <div class="container">
 
-      <section>
-        <blockquote class="quote">
-          &ldquo;May you know the image that the master seeks in paints<br>
-          may you find favour in the congress of the saints<br>
-          i wish you rock &amp; roll and the rock of ages too<br>
-          keep the devil in the hole and the road in front of you&rdquo;
-          <span class="quote-attrib">&ndash;From &ldquo;Cats Upon The Roof Tops&rdquo;</span>
+      <section id="lyric" class="center">
+        <blockquote class="lyric-verse">
+          <span class="l">&ldquo;May you know the image that the master seeks in paints</span>
+          <span class="l">may you find favour in the congress of the saints</span>
+          <span class="l">i wish you rock &amp; roll and the rock of ages too</span>
+          <span class="l">keep the devil in the hole and the road in front of you&rdquo;</span>
+          <span class="lyric-attrib">&ndash;From &ldquo;Cats Upon The Roof Tops&rdquo;</span>
         </blockquote>
       </section>
 
-      <section class="center">
-        <img class="feature-img rounded" src="images/duke-by-daniel_orig.jpg" alt="Duke Aeroplane in sunglasses and a wide-brimmed hat" width="1100" height="733">
-      </section>
+      <hr class="redline">
 
-      <section>
-        <h1>Not Well Known, Just Here on Loan.</h1>
-        <p class="lede">Galen Cassidy Peria, also known as Duke Aeroplane, is a song-finder, wordsmith, filmmaker, student of the cards, histrionic, and excitable drinker. He is based in New Orleans, Louisiana, where he makes a highly-regarded crawfish &eacute;touff&eacute;e, plays piano for his cat, lights candles to St.&nbsp;Jude, reads mouldering paperback novels, and screams at televised baseball. The Duke hopes you will enjoy his website and then get the hell off the internet.</p>
-        <p class="center"><a class="btn" href="contact.html">Contact the Duke</a></p>
+      <section class="bio-collage">
+        <figure class="snapshot">
+          <img src="images/galen-rome-gas_1_orig.jpg" alt="Galen Cassidy Peria" loading="lazy">
+          <figcaption>The Duke, abroad</figcaption>
+        </figure>
+        <div>
+          <p class="bio-lede">Galen Cassidy Peria, also known as Duke Aeroplane, is a song-finder, wordsmith, filmmaker, student of the cards, histrionic, and excitable drinker. He is based in New Orleans, Louisiana, where he makes a highly-regarded crawfish &eacute;touff&eacute;e, plays piano for his cat, lights candles to St.&nbsp;Jude, reads mouldering paperback novels, and screams at televised baseball. The Duke hopes you will enjoy his website and then get the hell off the internet.</p>
+          <p><a class="btn" href="contact.html">Contact the Duke</a></p>
+        </div>
       </section>
 
     </div>
@@ -71,6 +95,6 @@
     <div class="container">&copy; Galen Cassidy Peria, 2026</div>
   </footer>
 
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>

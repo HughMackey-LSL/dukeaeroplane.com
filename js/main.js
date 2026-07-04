@@ -3,6 +3,95 @@
 (function () {
   "use strict";
 
+  var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduceMotion = reduceMotionQuery.matches;
+  var docEl = document.documentElement;
+
+  /* ---------- Texture: film grain + vignette overlays ---------- */
+  // Injected here (not in markup) so the decorative layers stay out of the
+  // 9 duplicated page heads and simply don't exist when JS is unavailable.
+  ["vignette", "grain"].forEach(function (cls) {
+    var layer = document.createElement("div");
+    layer.className = cls;
+    layer.setAttribute("aria-hidden", "true");
+    document.body.appendChild(layer);
+  });
+
+  /* ---------- Scroll-reveal choreography ---------- */
+  // Tag <html> so the CSS "hidden until revealed" rules only apply with JS.
+  docEl.classList.add("js-anim");
+
+  var revealTargets = [];
+  Array.prototype.forEach.call(
+    document.querySelectorAll("main .container > section, main > section, hr.redline"),
+    function (el) {
+      // HRs animate via their own `hr.redline` rule; sections get `.reveal`.
+      if (el.tagName !== "HR") el.classList.add("reveal");
+      revealTargets.push(el);
+    }
+  );
+
+  function revealAll() {
+    revealTargets.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealAll();
+  } else {
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+
+    revealTargets.forEach(function (el, i) {
+      // Stagger neighbours a touch so groups cascade rather than pop together.
+      el.style.transitionDelay = (Math.min(i % 4, 3) * 0.08) + "s";
+      io.observe(el);
+    });
+  }
+
+  /* ---------- Hero: kinetic title + lyric verse + parallax ---------- */
+  var heroTitle = document.querySelector(".hero-title");
+  if (heroTitle) {
+    // Kick the entrance on the next frame so the initial transform is painted.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { heroTitle.classList.add("in"); });
+    });
+  }
+
+  var heroImg = document.querySelector(".hero-img");
+  if (heroImg && !reduceMotion) {
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var offset = Math.min(window.pageYOffset, 700) * 0.28;
+        heroImg.style.transform = "translate3d(0," + offset + "px,0) scale(1.08)";
+        ticking = false;
+      });
+    }, { passive: true });
+    heroImg.style.transform = "scale(1.08)";
+  }
+
+  /* ---------- Nav: shrink + shadow once the page starts scrolling ---------- */
+  var nav = document.querySelector(".site-nav");
+  if (nav) {
+    var navTicking = false;
+    window.addEventListener("scroll", function () {
+      if (navTicking) return;
+      navTicking = true;
+      requestAnimationFrame(function () {
+        nav.classList.toggle("scrolled", window.pageYOffset > 40);
+        navTicking = false;
+      });
+    }, { passive: true });
+  }
+
   /* ---------- Mobile navigation ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("nav-menu");

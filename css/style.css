@@ -547,3 +547,356 @@ form .btn { margin-top: 1.25rem; }
   color: #ffffff;
   text-align: right;
 }
+
+/* ==========================================================================
+   JAZZ LAYER
+   Motion, texture, and swagger layered on top of the original theme.
+   Everything here is additive and degrades gracefully:
+     - reveal/parallax only engage once JS adds `.js-anim` to <html>
+     - all of it is neutralised under prefers-reduced-motion
+   ========================================================================== */
+
+:root {
+  --font-accent: "Special Elite", "Courier New", monospace;
+}
+
+/* --------------------------------------------------------------------------
+   Film grain + vignette (injected by JS as fixed, non-interactive overlays)
+   -------------------------------------------------------------------------- */
+
+.grain, .vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 150; /* above content + nav, below the lightbox (200) */
+}
+.grain {
+  opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation: grain-drift .6s steps(3) infinite;
+}
+.vignette {
+  z-index: 149;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+}
+@keyframes grain-drift {
+  0%, 100% { background-position: 0 0; }
+  25%      { background-position: -28px 12px; }
+  50%      { background-position: 18px -22px; }
+  75%      { background-position: -12px 26px; }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-reveal choreography
+   JS tags <html> with `.js-anim`, gives blocks `.reveal`, then toggles `.in`.
+   -------------------------------------------------------------------------- */
+
+.js-anim .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.js-anim .reveal.in { opacity: 1; transform: none; }
+
+/* Kinetic redline — draws itself in when scrolled into view */
+.js-anim hr.redline {
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: .4;
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s ease;
+}
+.js-anim hr.redline.in { transform: scaleX(1); opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   Navigation swagger — scroll-shrink + drawn underline + stamped active page
+   -------------------------------------------------------------------------- */
+
+.site-header { transition: padding .3s ease; }
+.site-header img { transition: width .3s ease; }
+.site-nav { transition: box-shadow .3s ease; }
+.site-nav.scrolled { box-shadow: 0 6px 20px rgba(0,0,0,.55); }
+.site-nav.scrolled .site-header { padding-top: 0; }
+
+@media (min-width: 701px) {
+  .nav-menu a { position: relative; border-bottom: 2px solid transparent; }
+  /* Drawn underline replaces the flat hover border */
+  .nav-menu a::after {
+    content: "";
+    position: absolute;
+    left: .85rem; right: .85rem; bottom: .55rem;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav-menu a:hover { border-bottom-color: transparent; }
+  .nav-menu a:hover::after { transform: scaleX(1); }
+  /* Active page: a persistent red "stamp" underline that sits slightly askew */
+  .nav-menu a[aria-current="page"] {
+    border-bottom-color: transparent;
+    color: #fff;
+  }
+  .nav-menu a[aria-current="page"]::after {
+    background: var(--red-nav);
+    height: 3px;
+    transform: scaleX(1) rotate(-.6deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Collage imagery — "tacked-up" photos that tilt on hover
+   -------------------------------------------------------------------------- */
+
+.feature-img.rounded { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
+.feature-img.rounded:hover {
+  transform: rotate(-1deg) scale(1.012);
+  box-shadow: 0 18px 40px rgba(0,0,0,.5);
+}
+
+.gallery a { transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
+.gallery a:hover {
+  transform: rotate(-1.4deg) scale(1.03);
+  z-index: 3;
+  box-shadow: 0 16px 34px rgba(0,0,0,.55);
+}
+
+/* --------------------------------------------------------------------------
+   Marquee ticker — vaudeville show-band that scrolls across a red rail
+   -------------------------------------------------------------------------- */
+
+.marquee {
+  overflow: hidden;
+  background: var(--red);
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding: .6rem 0;
+  margin: 0 0 3.5rem;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 26s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: .95rem;
+  color: #fff;
+  padding: 0 1.1rem;
+}
+.marquee .sep { color: rgba(0,0,0,.55); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --------------------------------------------------------------------------
+   Homepage hero — full-bleed duotone portrait, kinetic title, lyric verse
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  /* cancel main's 3rem/1.25rem padding to go edge-to-edge */
+  margin: -3rem -1.25rem 0;
+  min-height: min(84vh, 780px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #000;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  filter: grayscale(1) contrast(1.06) brightness(.72);
+  will-change: transform;
+}
+/* Red duotone wash */
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  mix-blend-mode: color;
+  opacity: .55;
+}
+/* Legibility gradient for the text (no blend, sits above the tint) */
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.92) 4%, rgba(0,0,0,.35) 42%, rgba(0,0,0,.08) 78%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.25rem 3.2rem;
+}
+.hero-kicker {
+  font-family: var(--font-accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: .95rem;
+  margin: 0 0 .6rem;
+  opacity: .92;
+}
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: .98;
+  color: #fff;
+  margin: 0;
+  font-size: clamp(2.6rem, 9vw, 6.2rem);
+  text-shadow: 0 4px 30px rgba(0,0,0,.6);
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line > span { display: inline-block; }
+.hero-title .accent { color: var(--red-nav); }
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255,255,255,.7);
+  font-family: var(--font-nav);
+  font-size: .7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,7px);} }
+
+/* Kinetic entrance for the title lines (runs once on load) */
+.js-anim .hero-title .line > span { transform: translateY(105%); }
+.hero-title.in .line > span {
+  animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero-title.in .line:nth-child(2) > span { animation-delay: .12s; }
+@keyframes rise { to { transform: translateY(0); } }
+
+/* Lyric verse — hand-typed pull quote */
+.lyric-verse {
+  font-family: var(--font-accent);
+  text-transform: none;
+  letter-spacing: .5px;
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  line-height: 1.9;
+  color: var(--text);
+  text-align: center;
+  max-width: 34em;
+  margin: 0 auto;
+}
+.lyric-verse .l {
+  display: block;
+  opacity: 0;
+}
+/* The verse animates when its containing section is revealed into view */
+.js-anim .reveal.in .lyric-verse .l { animation: typeline .5s ease forwards; }
+.js-anim .reveal.in .lyric-verse .l:nth-child(1) { animation-delay: .05s; }
+.js-anim .reveal.in .lyric-verse .l:nth-child(2) { animation-delay: .35s; }
+.js-anim .reveal.in .lyric-verse .l:nth-child(3) { animation-delay: .65s; }
+.js-anim .reveal.in .lyric-verse .l:nth-child(4) { animation-delay: .95s; }
+/* When JS is off, verse is simply visible */
+.lyric-verse .l { opacity: 1; }
+.js-anim .lyric-verse .l { opacity: 0; }
+@keyframes typeline { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.lyric-attrib {
+  display: block;
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-dim);
+  font-size: .9rem;
+  margin-top: 1.4em;
+}
+
+/* Collage bio block — photo tacked at an angle beside the text */
+.bio-collage {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.bio-collage .snapshot {
+  position: relative;
+  transform: rotate(-3deg);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.bio-collage .snapshot:hover { transform: rotate(-1deg) scale(1.02); }
+.bio-collage .snapshot img {
+  display: block;
+  border: 8px solid #f4f1ea;
+  border-bottom-width: 46px; /* polaroid chin */
+  box-shadow: 0 20px 44px rgba(0,0,0,.55);
+  border-radius: 2px;
+}
+/* Strip of "tape" across the top corner */
+.bio-collage .snapshot::before {
+  content: "";
+  position: absolute;
+  top: -14px; left: 50%;
+  width: 108px; height: 30px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: rgba(190,30,45,.32);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+.bio-collage .snapshot figcaption {
+  font-family: var(--font-accent);
+  color: #2a2a2a;
+  position: absolute;
+  left: 0; right: 8px;
+  bottom: 8px;
+  text-align: center;
+  font-size: .95rem;
+  padding: 0;
+}
+.bio-lede { font-size: 1.08rem; }
+.bio-lede::first-letter {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  float: left;
+  font-size: 3.3rem;
+  line-height: .8;
+  padding: .06em .12em 0 0;
+  color: var(--red-soft);
+}
+@media (max-width: 720px) {
+  .bio-collage { grid-template-columns: 1fr; gap: 2.5rem; justify-items: center; }
+  .bio-collage .snapshot { max-width: 300px; }
+  .bio-lede { text-align: left; }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced-motion: strip every entrance/loop, show everything at rest
+   (the global reduce block already kills transitions/animations; these
+   rules make sure nothing is left hidden or mid-transform.)
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  .js-anim .reveal { opacity: 1 !important; transform: none !important; }
+  .js-anim hr.redline { transform: none !important; opacity: 1 !important; }
+  .js-anim .hero-title .line > span { transform: none !important; }
+  .js-anim .lyric-verse .l { opacity: 1 !important; transform: none !important; }
+  .marquee-track { animation: none !important; }
+  .hero-scroll { animation: none !important; }
+}

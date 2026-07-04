@@ -34,7 +34,7 @@ copy the folder to any static host.
 
 - **Cache-busting is manual**: CSS/JS are linked as `style.css?v=N` /
   `main.js?v=N`. After editing either file, bump the version in ALL pages:
-  `sed -i '' 's|main.js?v=7|main.js?v=8|' *.html`. Current: CSS v=3, JS v=7.
+  `sed -i '' 's|main.js?v=7|main.js?v=8|' *.html`. Current: CSS v=4, JS v=8.
 - Design tokens (preserve these — they're the original site's look):
   - Page bg `#242424`, content well `#000`, footer band `#BE1E2D`.
   - Heading red `--red-soft: #c23b3b` — 3.98:1 on black, passes WCAG AA for
@@ -42,8 +42,41 @@ copy the folder to any static host.
     has a 1.2rem floor.
   - Nav red `--red-nav: #d63e4a` — deliberately lightened from the original
     `#b2222c` to pass AA (4.65:1) at small sizes. Don't darken it back.
-  - Headings: Josefin Slab uppercase; nav: Josefin Sans; body: Quicksand
-    (Google Fonts).
+  - Headings: Josefin Slab uppercase; nav: Josefin Sans; body: Quicksand;
+    accent: Special Elite (distressed typewriter — `--font-accent`, used only
+    for pull-quotes/kickers/captions). All from Google Fonts.
+
+## The "jazz layer" (added 2026-07-04)
+
+A second, additive block at the bottom of `css/style.css` (marked `JAZZ LAYER`)
+and a matching set of modules at the top of `js/main.js` add motion/texture on
+top of the untouched original theme. Design brief: keep the black-and-red
+Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
+("devil-may-care/bohemian"). Ground rules for extending it:
+
+- **Graceful degradation is load-bearing.** JS adds `.js-anim` to `<html>`;
+  the "hidden until revealed" CSS only applies under that class, so a no-JS or
+  pre-JS page shows all content. The `@media (prefers-reduced-motion: reduce)`
+  block at the very end force-shows everything and kills every loop/entrance —
+  keep new effects covered there.
+- **Scroll-reveal is automatic.** `main.js` selects `main .container > section,
+  main > section, hr.redline`, tags sections `.reveal`, and an
+  IntersectionObserver toggles `.in`. New pages get reveal + kinetic dividers
+  for free — no per-page markup needed. Effects that fire *inside* a section
+  (e.g. the homepage lyric lines) must key off `.reveal.in <descendant>`, NOT a
+  class on the inner element (the observer only tags the section).
+- **Texture layers (`.grain`, `.vignette`) are injected by JS**, not in markup,
+  so they stay out of the 9 duplicated heads. They sit at z-index 149–150
+  (above content/nav, below the lightbox at 200) with `pointer-events:none`.
+- Homepage-only pieces live in `index.html`: `.hero` (full-bleed duotone
+  portrait via grayscale img + red `mix-blend:color` tint + parallax),
+  `.marquee` ticker, `.lyric-verse` (typed reveal), `.bio-collage` (polaroid
+  snapshot + drop-cap). The hero/marquee break out of `.container` with
+  negative margins that cancel `main`'s padding — they're direct children of
+  `main`, not inside `.container`.
+- **Phasing:** Phase 1 (shared foundation) + homepage hero are DONE. Still to
+  do: film page (cinematic/filmstrip), music (jukebox cards), and collage
+  passes for words/dates/media/epk/merch.
 - Nav collapses to a menu button under 700px; between 700–1024px the nav type
   tightens so the full bar fits one line. Active page marked with
   `aria-current="page"` (set per page, remember it when adding pages).
