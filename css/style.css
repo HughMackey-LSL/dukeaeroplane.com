@@ -1,0 +1,549 @@
+/* ==========================================================================
+   Duke Aeroplane — dukeaeroplane.com
+   Static recreation of the original Weebly site.
+   Palette and type preserved from the original theme:
+     page bg #242424 · content well #000 · accent reds #BE1E2D / #C23B3B
+     headings: Josefin Slab (uppercase, letterspaced)
+     nav:      Josefin Sans (uppercase, red)
+     body:     Quicksand (light gray)
+   ========================================================================== */
+
+:root {
+  --bg: #242424;
+  --well: #000000;
+  --red: #be1e2d;
+  --red-soft: #c23b3b; /* 3.98:1 on black — AA for large/bold text only */
+  --red-nav: #d63e4a;  /* 4.65:1 on black — AA for the small nav type */
+  --red-dark: #7a141f;
+  --text: #d5d5d5;
+  --text-dim: #a1a1a1;
+  --font-heading: "Josefin Slab", "Times New Roman", serif;
+  --font-nav: "Josefin Sans", "Helvetica Neue", sans-serif;
+  --font-body: "Quicksand", "Helvetica Neue", sans-serif;
+  --container: 1000px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.8;
+  border-top: 8px solid var(--red);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: var(--text); text-decoration: underline; text-decoration-color: var(--red-soft); text-underline-offset: 3px; }
+a:hover { color: #ffffff; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); overflow: hidden; white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--red); color: #fff; padding: .5em 1em; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Header & navigation
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  background: var(--well);
+  text-align: center;
+  padding: 2rem 1rem 0;
+}
+
+.site-logo { display: inline-block; border: 0; }
+.site-logo img { width: min(340px, 70vw); display: block; }
+
+.site-nav {
+  background: var(--well);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--red-dark);
+  border-radius: 3px;
+  color: var(--red-nav);
+  font-family: var(--font-nav);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: .55em 1.2em;
+  margin: .6rem;
+  cursor: pointer;
+}
+.nav-toggle:hover { border-color: var(--red-nav); color: #fff; }
+
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-menu a {
+  display: block;
+  font-family: var(--font-nav);
+  font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red-nav);
+  text-decoration: none;
+  padding: 1rem .85rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.nav-menu a:hover { color: #fff; border-bottom-color: #fff; }
+.nav-menu a[aria-current="page"] { border-bottom-color: var(--red-nav); }
+
+/* Tighten nav type at mid widths so the full bar survives on smaller screens */
+@media (max-width: 1024px) {
+  .nav-menu a { font-size: .78rem; letter-spacing: 1.5px; padding: 1rem .55rem; }
+}
+
+@media (max-width: 700px) {
+  .nav-inner { justify-content: flex-start; flex-wrap: wrap; }
+  .nav-toggle { display: inline-block; }
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    flex-basis: 100%;
+    width: 100%;
+    padding-bottom: .5rem;
+  }
+  .nav-menu.open { display: flex; }
+  .nav-menu a { font-size: .85rem; letter-spacing: 2px; padding: .7rem 1.5rem; border-bottom: 0; border-left: 3px solid transparent; white-space: normal; }
+  .nav-menu a[aria-current="page"] { border-left-color: var(--red-nav); }
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+
+main {
+  background: var(--well);
+  padding: 3rem 1.25rem 4rem;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.container-narrow { max-width: 720px; margin: 0 auto; }
+
+section { margin: 0 0 3.5rem; }
+section:last-child { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1.25;
+  color: var(--red-soft);
+  margin: 0 0 1rem;
+}
+
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); text-align: center; }
+h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+h3 { font-size: 1.1rem; color: var(--text-dim); }
+
+p { margin: 0 0 1.25em; }
+
+.muted { color: var(--text-dim); }
+.center { text-align: center; }
+
+.lede {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  text-align: center;
+  max-width: 46em;
+  margin: 0 auto 1.5em;
+}
+
+.quote {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  color: var(--text);
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  line-height: 1.6;
+  border: 0;
+  margin: 0 auto;
+  max-width: 40em;
+  padding: 0 1rem;
+}
+/* Red quotes stay >=1.2rem (19.2px bold = WCAG large text) so #c23b3b passes AA */
+.quote.red { color: var(--red-soft); font-size: clamp(1.2rem, 2.5vw, 1.35rem); }
+.quote-attrib {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-dim);
+  font-size: .9rem;
+  margin-top: .75em;
+}
+
+/* Red divider line — echoes the original darkredline.png graphic */
+hr.redline {
+  border: 0;
+  height: 3px;
+  margin: 3rem auto;
+  max-width: var(--container);
+  background: linear-gradient(to right, transparent, var(--red-dark) 12%, var(--red-dark) 88%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  border: 0;
+  border-radius: 3px;
+  padding: .75em 1.6em;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.btn:hover { background: #d92a3c; color: #fff; }
+.btn.btn-outline {
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red-nav);
+}
+.btn.btn-outline:hover { background: var(--red); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   Imagery
+   -------------------------------------------------------------------------- */
+
+.feature-img { display: block; margin: 0 auto; }
+.feature-img.rounded { border-radius: 4px; }
+
+figure { margin: 0; }
+figcaption { color: var(--text-dim); font-size: .85rem; text-align: center; padding-top: .5em; }
+
+/* --------------------------------------------------------------------------
+   Gallery (Media page, film stills, press photos)
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.gallery a {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #111;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.gallery a:hover img { transform: scale(1.04); opacity: .85; }
+
+@media (max-width: 600px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+}
+
+/* Carousel (Media page photo gallery) */
+.carousel { position: relative; }
+
+/* No CSS scroll-behavior here: the JS passes an explicit behavior so it can
+   honor prefers-reduced-motion, and CSS smooth would also hijack instant
+   programmatic scrolls (behavior:'auto' defers to CSS). */
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 3px;
+  background: #111;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: auto;
+  min-height: 300px;
+  background: #111;
+}
+.carousel-slide img {
+  max-width: 100%;
+  max-height: min(65vh, 600px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: none;
+}
+.carousel-slide:hover img { transform: none; opacity: 1; }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0, 0, 0, .6);
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  color: #eee;
+  font-size: 1.8rem;
+  line-height: 1;
+  padding: .4em .5em;
+  cursor: pointer;
+}
+.carousel-btn:hover { color: var(--red-nav); border-color: var(--red-nav); }
+.carousel-btn.prev { left: .75rem; }
+.carousel-btn.next { right: .75rem; }
+
+.carousel-status {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: .85rem;
+  letter-spacing: 1px;
+  padding-top: .75rem;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, .93);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: min(94vw, 1400px);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+.lightbox button {
+  position: absolute;
+  background: none;
+  border: 0;
+  color: #ddd;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: .5rem .9rem;
+  font-family: var(--font-body);
+}
+.lightbox button:hover { color: var(--red-nav); }
+.lightbox .lb-close { top: .5rem; right: .75rem; }
+.lightbox .lb-prev { left: .25rem; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-next { right: .25rem; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-count {
+  position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  color: var(--text-dim); font-size: .85rem; letter-spacing: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   Media embeds
+   -------------------------------------------------------------------------- */
+
+.video-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 900px;
+}
+.video-embed iframe,
+.video-embed video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.sc-embed { margin-bottom: 1.25rem; }
+.sc-embed iframe { display: block; width: 100%; border: 0; border-radius: 3px; }
+
+.track-list { display: grid; gap: 1.25rem; }
+
+/* --------------------------------------------------------------------------
+   Two-column blocks (film bios, dates)
+   -------------------------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.split.reverse > :first-child { order: 2; }
+@media (max-width: 720px) {
+  .split { grid-template-columns: 1fr; gap: 1.25rem; }
+  .split.reverse > :first-child { order: 0; }
+}
+
+/* Event cards on Dates page */
+.event {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  background: #111;
+  border-left: 3px solid var(--red);
+  border-radius: 3px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.event-when {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+.event-what { color: var(--text-dim); }
+.event-what strong { color: var(--text); }
+@media (max-width: 600px) {
+  .event { grid-template-columns: 1fr; gap: .5rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Forms (Contact page)
+   -------------------------------------------------------------------------- */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+form label {
+  display: block;
+  font-size: .9rem;
+  letter-spacing: 1px;
+  margin: 1rem 0 .3rem;
+  color: var(--text-dim);
+}
+.form-required { color: var(--red-nav); }
+
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 3px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: .65em .75em;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--red-soft);
+}
+
+.checkbox-row {
+  display: flex;
+  gap: .6em;
+  align-items: flex-start;
+  font-size: .85rem;
+  color: var(--text-dim);
+  margin: 1rem 0;
+}
+.checkbox-row input { margin-top: .35em; }
+
+form .btn { margin-top: 1.25rem; }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--red);
+  padding: 2.5rem 1.25rem;
+}
+.site-footer .container {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .85rem;
+  color: #ffffff;
+  text-align: right;
+}

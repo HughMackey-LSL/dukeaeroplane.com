@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Duke Aeroplane</title>
+  <meta name="description" content="Contact Duke Aeroplane (Galen Cassidy Peria) for booking, vinyl orders, and general correspondence.">
+  <link rel="icon" href="images/galenlogo4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html">
+      <img src="images/galenlogo4.png" alt="Galen Cassidy Peria A.K.A. Duke Aeroplane">
+    </a>
+  </header>
+
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-inner">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="musics.html">Musics</a></li>
+        <li><a href="words.html">Words</a></li>
+        <li><a href="theheartbeatthehammer.html">The Heartbeat, The Hammer</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="merch.html">Merch</a></li>
+        <li><a href="epk.html">EPK</a></li>
+        <li><a href="dates.html">Dates</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="container">
+
+      <section class="center">
+        <img class="feature-img rounded" src="images/vintage-post-office-photograph-cu3g4adc6unw1xrt_orig.jpg" alt="Vintage photograph of a post office" loading="lazy">
+      </section>
+
+      <section>
+        <h1>The Duke Would Love to Hear From You.</h1>
+        <p class="lede">He can be reached via the contact form over yonder, or via the fine folks of the United States Postal Service at:<br><br>
+        2517 Dumaine Street<br>
+        New Orleans, LA 70119</p>
+        <p class="center muted">
+          For booking please contact<br>
+          <a href="mailto:galencassidyperia@gmail.com">galencassidyperia@gmail.com</a>
+        </p>
+      </section>
+
+      <hr class="redline">
+
+      <section>
+        <div class="form-grid">
+
+          <div>
+            <h2>Contact the Duke:</h2>
+            <!-- Form backend: create a free form at https://formspree.io and
+                 replace YOUR_FORM_ID below with the ID it gives you. -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <label for="c-name">Name <span class="form-required">*</span></label>
+              <input id="c-name" type="text" name="name" required autocomplete="name">
+
+              <label for="c-email">Email <span class="form-required">*</span></label>
+              <input id="c-email" type="email" name="email" required autocomplete="email">
+
+              <label for="c-message">Comment <span class="form-required">*</span></label>
+              <textarea id="c-message" name="message" rows="5" required></textarea>
+
+              <button class="btn" type="submit">Submit</button>
+            </form>
+          </div>
+
+          <div>
+            <h2>Sign Up for Regular Updates from the Duke:</h2>
+            <!-- Newsletter signups also route through Formspree; replace
+                 YOUR_FORM_ID here too (a second form, or reuse the same one). -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_subject" value="Newsletter signup">
+              <label for="n-email">Email <span class="form-required">*</span></label>
+              <input id="n-email" type="email" name="email" required autocomplete="email">
+
+              <div class="checkbox-row">
+                <input id="n-optin" type="checkbox" name="opted_in" value="yes" required>
+                <label for="n-optin" style="margin:0;">I agree to receiving marketing and promotional materials <span class="form-required">*</span></label>
+              </div>
+
+              <button class="btn" type="submit">Subscribe</button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; Galen Cassidy Peria, 2026</div>
+  </footer>
+
+  <script src="js/main.js?v=7"></script>
+</body>
+</html>
