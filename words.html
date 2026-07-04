@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,18 +37,24 @@
   </nav>
 
   <main id="main">
+
+    <section class="page-hero" aria-labelledby="page-title">
+      <img class="hero-img" src="images/black-and-white-vintage-typewriter-wrapped-canvas-photograph.jpg" alt="Black and white photograph of a vintage typewriter">
+      <div class="hero-tint" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Lyrics &amp; Verse</p>
+        <h1 class="hero-title" id="page-title"><span class="line"><span>Words</span></span></h1>
+      </div>
+    </section>
+
     <div class="container">
 
-      <h1>Words</h1>
-
       <section class="center">
-        <img class="feature-img rounded" src="images/black-and-white-vintage-typewriter-wrapped-canvas-photograph.jpg" alt="Black and white photograph of a vintage typewriter" loading="lazy">
-      </section>
-
-      <hr class="redline">
-
-      <section class="center">
-        <p class="quote" style="font-size:1.2rem;">Lyrics coming soon</p>
+        <div class="typed-note tape">
+          <p class="type-line">Lyrics coming soon<span class="cursor" aria-hidden="true"></span></p>
+          <p class="type-sub">&mdash; the Duke is still hunting for the right ones</p>
+        </div>
       </section>
 
     </div>

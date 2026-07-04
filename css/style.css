@@ -1127,3 +1127,163 @@ form .btn { margin-top: 1.25rem; }
 @media (prefers-reduced-motion: reduce) {
   .album:hover .vinyl { animation: none !important; }
 }
+
+/* --------------------------------------------------------------------------
+   Collage passes — shared "pasted paper" look for the remaining pages
+   -------------------------------------------------------------------------- */
+
+/* A strip of translucent red "tape", reused across taped elements */
+.tape::after {
+  content: "";
+  position: absolute;
+  top: -13px; left: 50%;
+  width: 110px; height: 28px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(190,30,45,.30);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  z-index: 4;
+}
+
+/* EPK — press quotes as pasted newspaper clippings */
+.clipping {
+  position: relative;
+  background: #f2eee4;
+  color: #262019;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.12rem;
+  line-height: 1.62;
+  text-transform: none;
+  letter-spacing: 0;
+  max-width: 36em;
+  margin: 0 auto 2.5rem;
+  padding: 1.9rem 2.1rem 1.6rem;
+  border-radius: 1px;
+  box-shadow: 0 16px 38px rgba(0,0,0,.5);
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 27px, rgba(0,0,0,.03) 27px 28px);
+}
+.clipping.tilt-l { transform: rotate(-1.4deg); }
+.clipping.tilt-r { transform: rotate(1.3deg); }
+.clipping .quote-attrib {
+  display: block;
+  font-family: var(--font-accent);
+  color: #8a1620;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .82rem;
+  margin-top: 1em;
+}
+.clipping-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+.clipping-row .clipping { margin-bottom: 0; }
+@media (max-width: 680px) {
+  .clipping-row { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* Words — a sheet fed through the typewriter */
+.typed-note {
+  position: relative;
+  max-width: 540px;
+  margin: 0 auto;
+  background: #f2eee4;
+  color: #262019;
+  padding: 3.2rem 2.6rem;
+  transform: rotate(-1.1deg);
+  border-radius: 2px;
+  box-shadow: 0 20px 46px rgba(0,0,0,.55);
+  text-align: center;
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 31px, rgba(0,0,0,.04) 31px 32px);
+}
+.typed-note .type-line {
+  font-family: var(--font-accent);
+  font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+  letter-spacing: .5px;
+  margin: 0;
+}
+.typed-note .type-sub {
+  font-family: var(--font-accent);
+  color: #5c5348;
+  font-size: .95rem;
+  margin: 1.1rem 0 0;
+}
+.typed-note .cursor {
+  display: inline-block;
+  width: .62ch; height: 1.05em;
+  margin-left: .06em;
+  vertical-align: -.14em;
+  background: #262019;
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Dates — rubber "PAST" stamp for expired shows */
+.event { position: relative; }
+.stamp {
+  position: absolute;
+  top: 1rem; right: 1.1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--red);
+  border: 3px solid var(--red);
+  border-radius: 5px;
+  padding: .12em .45em;
+  font-size: 1.15rem;
+  transform: rotate(-13deg);
+  opacity: .78;
+  box-shadow: 0 0 0 2px rgba(190,30,45,.14);
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .stamp { position: static; display: inline-block; transform: rotate(-4deg); margin-top: .6rem; }
+}
+
+/* Merch — record-store display: sleeve with the disc sliding out */
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+.record-display {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  padding-right: 12%;
+}
+.record-display .sleeve {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: min(340px, 78vw);
+  border-radius: 2px;
+  box-shadow: 0 22px 48px rgba(0,0,0,.6);
+}
+.record-display .vinyl.disc {
+  --size: min(300px, 66vw);
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translateY(-50%);
+  z-index: 1;
+  transition: left .55s cubic-bezier(.2,.7,.2,1);
+}
+.record-display:hover .vinyl.disc { left: 76%; }
+.record-display:hover .vinyl { animation: spin 3.6s linear infinite; }
+@media (max-width: 760px) {
+  .product { grid-template-columns: 1fr; gap: 2.5rem; justify-items: center; text-align: center; }
+  .product .buy-links { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed-note .cursor { animation: none !important; }
+  .record-display:hover .vinyl { animation: none !important; }
+  .clipping.tilt-l, .clipping.tilt-r, .typed-note { transform: none !important; }
+}

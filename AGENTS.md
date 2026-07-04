@@ -85,8 +85,21 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   negative margin like the hero), `.trailer-stage` (framed video), `.filmstrip`
   (perforated horizontal scroller — its `a` tags are wired into the lightbox
   selector in main.js), `.credits` (end-title layout). Bios stay as `.split`.
-- **Phasing:** Phase 1 (shared foundation) + homepage hero + **Phase 2 (film +
-  music)** are DONE. Still to do: collage passes for words/dates/media/epk/merch.
+- **Collage passes (Phase 3):**
+  - `.clipping` (EPK press quotes) — cream "pasted newspaper" cards with dark
+    serif ink; `.tilt-l`/`.tilt-r` set the rotation, `.clipping-row` puts two
+    side by side. Contrast is dark-on-cream so the old `.quote.red` AA floor no
+    longer applies here.
+  - `.typed-note` (Words, Dates) — cream sheet in the accent font with a
+    blinking `.cursor`. Add `.tape` (shared class, translucent-red strip via
+    `::after`) to any pasted element.
+  - `.stamp` (Dates) — rotated red rubber "PAST" stamp inside `.event`.
+  - `.product` + `.record-display` (Merch) — album `.sleeve` with a
+    `.vinyl.disc` sliding out on hover.
+- **Phasing:** ALL phases DONE — Phase 1 (foundation) + homepage hero,
+  Phase 2 (film + music), Phase 3 (words/dates/media/epk/merch collage). Only
+  page not restructured is `contact.html` (kept plain by design; its forms are
+  the pre-existing Formspree TODO).
 - Nav collapses to a menu button under 700px; between 700–1024px the nav type
   tightens so the full bar fits one line. Active page marked with
   `aria-current="page"` (set per page, remember it when adding pages).
