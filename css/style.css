@@ -1054,17 +1054,23 @@ form .btn { margin-top: 1.25rem; }
 /* Filmstrip — horizontally scrollable strip of perforated frames */
 .filmstrip {
   position: relative;
-  display: flex;
-  gap: 5px;
   overflow-x: auto;
-  padding: 22px 6px;
   background: #0a0a0a;
   border-radius: 2px;
   scrollbar-width: none;
   scroll-snap-type: x proximity;
 }
 .filmstrip::-webkit-scrollbar { display: none; }
-.filmstrip::before, .filmstrip::after {
+/* Inner track is as wide as all the frames, so the perforations (anchored to
+   it) span the full scroll width and scroll along with the frames. */
+.filmstrip-track {
+  position: relative;
+  display: flex;
+  gap: 5px;
+  width: max-content;
+  padding: 22px 6px;
+}
+.filmstrip-track::before, .filmstrip-track::after {
   content: "";
   position: absolute;
   left: 0; right: 0;
@@ -1073,8 +1079,8 @@ form .btn { margin-top: 1.25rem; }
   pointer-events: none;
   background: repeating-linear-gradient(to right, #0a0a0a 0 9px, #333 9px 19px);
 }
-.filmstrip::before { top: 4px; }
-.filmstrip::after { bottom: 4px; }
+.filmstrip-track::before { top: 4px; }
+.filmstrip-track::after { bottom: 4px; }
 .filmstrip a {
   flex: 0 0 auto;
   width: clamp(240px, 40vw, 320px);
@@ -1252,34 +1258,51 @@ form .btn { margin-top: 1.25rem; }
   gap: 3.5rem;
   align-items: center;
 }
+/* Hug the left of the column so the disc peeks into free column space,
+   never over the text in the second column. */
 .record-display {
   position: relative;
-  display: inline-block;
-  margin: 0 auto;
-  padding-right: 12%;
+  width: min(320px, 68vw);
+  justify-self: start;
 }
 .record-display .sleeve {
   position: relative;
   z-index: 2;
   display: block;
-  width: min(340px, 78vw);
+  width: 100%;
   border-radius: 2px;
   box-shadow: 0 22px 48px rgba(0,0,0,.6);
 }
+/* Centre the disc with top/height rather than a transform, so the hover
+   spin animation (which drives `transform`) can't knock it downward. */
 .record-display .vinyl.disc {
-  --size: min(300px, 66vw);
+  width: 82%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* height follows width — a % height would collapse to 0 here */
   position: absolute;
-  top: 50%;
-  left: 58%;
-  transform: translateY(-50%);
+  top: 9%;
+  left: 32%;
   z-index: 1;
   transition: left .55s cubic-bezier(.2,.7,.2,1);
 }
-.record-display:hover .vinyl.disc { left: 76%; }
-.record-display:hover .vinyl { animation: spin 3.6s linear infinite; }
+.record-display:hover .vinyl.disc {
+  left: 50%;
+  animation: spin 3.6s linear infinite;
+}
+
+.buy-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 760px) {
   .product { grid-template-columns: 1fr; gap: 2.5rem; justify-items: center; text-align: center; }
-  .product .buy-links { justify-content: center; }
+  .record-display { justify-self: center; }
+  .record-display .vinyl.disc { left: 26%; }
+  .buy-links { justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
