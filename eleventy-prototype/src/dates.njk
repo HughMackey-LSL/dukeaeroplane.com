@@ -1,0 +1,50 @@
+---
+layout: base.njk
+permalink: dates.html
+title: Dates — Duke Aeroplane
+description: Upcoming live dates for Duke Aeroplane and his great ensembles.
+navKey: dates.html
+---
+    <section class="page-hero" aria-labelledby="page-title">
+      <img class="hero-img" src="images/speakeasy_orig.jpg" alt="Vintage speakeasy scene">
+      <div class="hero-tint" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Live &amp; In Concert</p>
+        <h1 class="hero-title" id="page-title"><span class="line"><span>Dates</span></span></h1>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <section>
+        {%- for show in shows | sort(false, false, "date") %}
+        <div class="event">
+          {%- if show.date | isPast %}
+          <span class="stamp" aria-label="Past show">Past</span>
+          {%- endif %}
+          <div class="event-when">{{ show.date | prettyDate }}{% if show.time %}<br>{{ show.time }}{% endif %}</div>
+          <div class="event-what">
+            <strong>{{ show.venue }}</strong><br>
+            {{ show.address }}<br><br>
+            {%- for line in show.details %}
+            {{ line }}{% if not loop.last %}<br>{% endif %}
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endfor %}
+      </section>
+
+      <section>
+        <blockquote class="quote">
+          Do you enjoy heteronormative boomer music played by grouchy middle-aged white guys? If so then you won&rsquo;t want to miss Duke Aeroplane and one of his great ensembles live and in concert.
+        </blockquote>
+        {%- if not (shows | hasUpcoming) %}
+        <div style="height:2.5rem;"></div>
+        <div class="typed-note tape" style="max-width:440px;">
+          <p class="type-line">Future dates forthcoming&hellip;<span class="cursor" aria-hidden="true"></span></p>
+        </div>
+        {%- endif %}
+      </section>
+
+    </div>

@@ -1,0 +1,12 @@
+{
+  "name": "dukeaeroplane-eleventy-prototype",
+  "private": true,
+  "description": "Proof-of-concept: dates.html rendered by Eleventy from an editable data file.",
+  "scripts": {
+    "start": "eleventy --serve --port=8082",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

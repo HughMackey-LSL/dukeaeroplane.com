@@ -1,0 +1,10 @@
+[
+  { "label": "Musics", "url": "musics.html" },
+  { "label": "Words", "url": "words.html" },
+  { "label": "The Heartbeat, The Hammer", "url": "theheartbeatthehammer.html" },
+  { "label": "Media", "url": "media.html" },
+  { "label": "Merch", "url": "merch.html" },
+  { "label": "EPK", "url": "epk.html" },
+  { "label": "Dates", "url": "dates.html" },
+  { "label": "Contact", "url": "contact.html" }
+]

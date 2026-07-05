@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="icon" href="images/galenlogo4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=9">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html">
+      <img src="images/galenlogo4.png" alt="Galen Cassidy Peria A.K.A. Duke Aeroplane">
+    </a>
+  </header>
+
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-inner">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+      <ul class="nav-menu" id="nav-menu">
+        {%- for item in nav %}
+        <li><a href="{{ item.url }}"{% if item.url == navKey %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+{{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; Galen Cassidy Peria, 2026</div>
+  </footer>
+
+  <script src="js/main.js?v=9"></script>
+</body>
+</html>
