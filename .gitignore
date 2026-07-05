@@ -1,0 +1,6 @@
+# Eleventy prototype build artifacts — regenerable, do not commit
+eleventy-prototype/node_modules/
+eleventy-prototype/_site/
+
+# OS cruft
+.DS_Store
