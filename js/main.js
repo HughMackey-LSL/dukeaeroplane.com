@@ -119,7 +119,11 @@
     var swipeTimer = null;
 
     function index() {
-      return Math.round(track.scrollLeft / track.clientWidth);
+      // clientWidth can be 0 before the (lazy) slide images give the track a
+      // width, which would make the division NaN. Fall back to the first slide.
+      var w = track.clientWidth;
+      if (!w) return 0;
+      return Math.round(track.scrollLeft / w);
     }
     function update() {
       if (status) status.textContent = index() + 1 + " / " + slides.length;
@@ -157,6 +161,9 @@
       clearTimeout(swipeTimer);
       swipeTimer = setTimeout(function () { current = index(); }, 150);
     }, { passive: true });
+
+    // Re-derive the counter once the track has a real width again.
+    window.addEventListener("resize", update);
 
     update();
   });
