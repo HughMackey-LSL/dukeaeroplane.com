@@ -14,11 +14,11 @@ navKey: contact.html
       <section>
         <h1>The Duke Would Love to Hear From You.</h1>
         <p class="lede">He can be reached via the contact form over yonder, or via the fine folks of the United States Postal Service at:<br><br>
-        2517 Dumaine Street<br>
-        New Orleans, LA 70119</p>
+        {% for line in site.contact.addressLines %}{{ line }}{% if not loop.last %}<br>{% endif %}
+        {% endfor %}</p>
         <p class="center muted">
           For booking please contact<br>
-          <a href="mailto:galencassidyperia@gmail.com">galencassidyperia@gmail.com</a>
+          <a href="mailto:{{ site.contact.bookingEmail }}">{{ site.contact.bookingEmail }}</a>
         </p>
       </section>
 

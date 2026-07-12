@@ -20,6 +20,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "../images": "images" });
   eleventyConfig.addPassthroughCopy({ "../video": "video" });
 
+  // Phase 2 additions (banner styles + dismiss script) kept in their own
+  // files so they don't touch the shared style.css / main.js while this is a
+  // WIP branch. Folded into the main assets at cutover.
+  eleventyConfig.addPassthroughCopy({ "assets": "assets" });
+
   // "2025-04-09" -> "Wed, April 9th, 2025"  (matches the old hand-typed format)
   eleventyConfig.addFilter("prettyDate", function (dateStr) {
     const d = new Date(dateStr + "T00:00:00");
@@ -55,6 +60,33 @@ module.exports = function (eleventyConfig) {
     const upcoming = withDate.filter((s) => s._d >= today).sort((a, b) => a._d - b._d);
     const past = withDate.filter((s) => s._d < today).sort((a, b) => b._d - a._d);
     return upcoming.concat(past);
+  });
+
+  // Pick the announcement to show site-wide: the first one flagged active
+  // whose optional `expires` date hasn't passed. Returns null when there's
+  // nothing to show, so the banner markup renders only when warranted.
+  eleventyConfig.addFilter("activeAnnouncement", function (announcements) {
+    if (!announcements) return null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return (
+      announcements.find(
+        (a) => a.active && (!a.expires || new Date(a.expires + "T00:00:00") >= today)
+      ) || null
+    );
+  });
+
+  // "2026-07-12" -> "July 12, 2026" for blog post datelines.
+  eleventyConfig.addFilter("readableDate", function (dateStr) {
+    const d = typeof dateStr === "string" ? new Date(dateStr + "T00:00:00Z") : dateStr;
+    // Force UTC so a front-matter date (parsed as UTC midnight) doesn't slip a
+    // day when the build runs in a negative-offset timezone.
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    });
   });
 
   return {

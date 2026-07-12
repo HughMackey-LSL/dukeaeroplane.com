@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}</title>
+  <title>{{ headTitle or title }}</title>
   <meta name="description" content="{{ description }}">
   {%- if og %}
   <meta property="og:site_name" content="{{ og.site_name }}">
@@ -17,9 +17,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="assets/extras.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
+  {%- set ann = announcements | activeAnnouncement %}
+  {%- if ann %}
+  <div class="announce-bar" data-announce-id="{{ ann.id }}" role="region" aria-label="Announcement">
+    <div class="announce-inner">
+      <p class="announce-msg">{% if ann.url %}<a href="{{ ann.url }}">{{ ann.message }}</a>{% else %}{{ ann.message }}{% endif %}</p>
+      <button class="announce-dismiss" type="button" aria-label="Dismiss announcement">&times;</button>
+    </div>
+  </div>
+  {%- endif %}
 
   <header class="site-header">
     <a class="site-logo" href="index.html">
@@ -43,9 +54,10 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">&copy; Galen Cassidy Peria, 2026</div>
+    <div class="container">{{ site.copyright }}</div>
   </footer>
 
   <script src="js/main.js?v=9"></script>
+  <script src="assets/announce.js" defer></script>
 </body>
 </html>

@@ -6,5 +6,6 @@
   { "label": "Merch", "url": "merch.html" },
   { "label": "EPK", "url": "epk.html" },
   { "label": "Dates", "url": "dates.html" },
+  { "label": "Blog", "url": "blog.html" },
   { "label": "Contact", "url": "contact.html" }
 ]
