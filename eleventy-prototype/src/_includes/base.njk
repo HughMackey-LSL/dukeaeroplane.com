@@ -22,7 +22,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  {%- set ann = announcements | activeAnnouncement %}
+  {%- set ann = announcements.announcements | activeAnnouncement %}
   {%- if ann %}
   <div class="announce-bar" data-announce-id="{{ ann.id }}" role="region" aria-label="Announcement">
     <div class="announce-inner">

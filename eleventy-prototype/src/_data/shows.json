@@ -1,23 +1,25 @@
-[
-  {
-    "date": "2026-07-05",
-    "time": "7–9 PM",
-    "venue": "Paper and Pencil Restaurant and Lounge",
-    "venueUrl": "https://www.paperandpencilrestaurant.com/livemusic",
-    "address": "117 Burgoyne Rd, Ticonderoga, NY 12883",
-    "details": [
-      "Duke Aeroplane, Live In Concert"
-    ]
-  },
-  {
-    "date": "2025-04-09",
-    "time": "7–10 PM",
-    "venue": "Marigny Studio",
-    "address": "535 Marigny St, New Orleans, LA",
-    "details": [
-      "Duke Aeroplane & The Rum Birds:",
-      "“Some Little Bend In The River”",
-      "Live In-Studio Album Recording"
-    ]
-  }
-]
+{
+  "shows": [
+    {
+      "date": "2026-07-05",
+      "time": "7–9 PM",
+      "venue": "Paper and Pencil Restaurant and Lounge",
+      "venueUrl": "https://www.paperandpencilrestaurant.com/livemusic",
+      "address": "117 Burgoyne Rd, Ticonderoga, NY 12883",
+      "details": [
+        "Duke Aeroplane, Live In Concert"
+      ]
+    },
+    {
+      "date": "2025-04-09",
+      "time": "7–10 PM",
+      "venue": "Marigny Studio",
+      "address": "535 Marigny St, New Orleans, LA",
+      "details": [
+        "Duke Aeroplane & The Rum Birds:",
+        "“Some Little Bend In The River”",
+        "Live In-Studio Album Recording"
+      ]
+    }
+  ]
+}
