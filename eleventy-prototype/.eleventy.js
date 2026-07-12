@@ -45,6 +45,18 @@ module.exports = function (eleventyConfig) {
     return shows.some((s) => new Date(s.date + "T00:00:00") >= today);
   });
 
+  // Display order for the dates page: upcoming shows soonest-first, then past
+  // shows most-recent-first. This is the ordering a hand-edited page can't keep
+  // correct on its own — it re-sorts every build.
+  eleventyConfig.addFilter("sortShows", function (shows) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const withDate = shows.map((s) => ({ ...s, _d: new Date(s.date + "T00:00:00") }));
+    const upcoming = withDate.filter((s) => s._d >= today).sort((a, b) => a._d - b._d);
+    const past = withDate.filter((s) => s._d < today).sort((a, b) => b._d - a._d);
+    return upcoming.concat(past);
+  });
+
   return {
     dir: {
       input: "src",

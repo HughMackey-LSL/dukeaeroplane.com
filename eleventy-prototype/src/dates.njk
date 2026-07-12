@@ -18,14 +18,14 @@ navKey: dates.html
     <div class="container">
 
       <section>
-        {%- for show in shows | sort(false, false, "date") %}
+        {%- for show in shows | sortShows %}
         <div class="event">
           {%- if show.date | isPast %}
           <span class="stamp" aria-label="Past show">Past</span>
           {%- endif %}
           <div class="event-when">{{ show.date | prettyDate }}{% if show.time %}<br>{{ show.time }}{% endif %}</div>
           <div class="event-what">
-            <strong>{{ show.venue }}</strong><br>
+            <strong>{% if show.venueUrl %}<a href="{{ show.venueUrl }}">{{ show.venue }}</a>{% else %}{{ show.venue }}{% endif %}</strong><br>
             {{ show.address }}<br><br>
             {%- for line in show.details %}
             {{ line }}{% if not loop.last %}<br>{% endif %}
