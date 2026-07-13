@@ -1,0 +1,164 @@
+import { defineConfig } from "tinacms";
+
+// Branch Tina reads/writes. On Cloudflare Pages, CF_PAGES_BRANCH is set; locally
+// we default to main. (Set TINA_BRANCH to override.)
+const branch =
+  process.env.TINA_BRANCH ||
+  process.env.CF_PAGES_BRANCH ||
+  process.env.HEAD ||
+  "main";
+
+export default defineConfig({
+  branch,
+
+  // From your Tina Cloud project (Project → Overview / Tokens). Kept in env vars,
+  // never committed. See TINA-SETUP.md.
+  clientId: process.env.TINA_PUBLIC_CLIENT_ID || "",
+  token: process.env.TINA_TOKEN || "",
+
+  build: {
+    // Tina compiles the /admin editor SPA into <publicFolder>/<outputFolder>.
+    // publicFolder is Eleventy's build output; run `tinacms build` before eleventy.
+    outputFolder: "admin",
+    publicFolder: "_site",
+  },
+
+  media: {
+    tina: {
+      // Uploads are written to ./uploads (committed) and served from /uploads
+      // after Eleventy copies the folder into _site.
+      mediaRoot: "uploads",
+      publicFolder: "_site",
+    },
+  },
+
+  schema: {
+    collections: [
+      // ---------------------------------------------------------------------
+      // Shows — one JSON file holding the list; edited as a repeatable list.
+      // ---------------------------------------------------------------------
+      {
+        name: "shows",
+        label: "Shows / Dates",
+        path: "src/_data",
+        format: "json",
+        match: { include: "shows" },
+        ui: {
+          // Singleton file: no creating/deleting the document itself.
+          allowedActions: { create: false, delete: false },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "shows",
+            label: "Shows",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.venue || "New show" }),
+            },
+            fields: [
+              { type: "datetime", name: "date", label: "Date", required: true, ui: { dateFormat: "YYYY-MM-DD" } },
+              { type: "string", name: "time", label: "Time (e.g. 7–9 PM)" },
+              { type: "string", name: "venue", label: "Venue", required: true },
+              { type: "string", name: "venueUrl", label: "Venue link (optional)" },
+              { type: "string", name: "address", label: "Address" },
+              { type: "string", name: "details", label: "Detail lines", list: true },
+            ],
+          },
+        ],
+      },
+
+      // ---------------------------------------------------------------------
+      // Announcements — the site-wide banner(s).
+      // ---------------------------------------------------------------------
+      {
+        name: "announcements",
+        label: "Announcements",
+        path: "src/_data",
+        format: "json",
+        match: { include: "announcements" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          {
+            type: "object",
+            name: "announcements",
+            label: "Announcements",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.message || "New announcement" }),
+            },
+            fields: [
+              { type: "string", name: "id", label: "ID (unique, e.g. spring-tour)", required: true },
+              { type: "boolean", name: "active", label: "Show this announcement" },
+              { type: "string", name: "message", label: "Message", required: true, ui: { component: "textarea" } },
+              { type: "string", name: "url", label: "Link (optional, e.g. contact.html)" },
+              { type: "datetime", name: "expires", label: "Hide after (optional)", ui: { dateFormat: "YYYY-MM-DD" } },
+            ],
+          },
+        ],
+      },
+
+      // ---------------------------------------------------------------------
+      // Blog — one Markdown file per post.
+      // ---------------------------------------------------------------------
+      {
+        name: "post",
+        label: "Blog Posts",
+        path: "src/posts",
+        format: "md",
+        fields: [
+          { type: "string", name: "title", label: "Title", required: true, isTitle: true },
+          { type: "datetime", name: "date", label: "Date", required: true, ui: { dateFormat: "YYYY-MM-DD" } },
+          { type: "string", name: "description", label: "Excerpt / summary", ui: { component: "textarea" } },
+          { type: "rich-text", name: "body", label: "Body", isBody: true },
+        ],
+      },
+
+      // ---------------------------------------------------------------------
+      // Site settings — global copy (footer, contact details).
+      // ---------------------------------------------------------------------
+      {
+        name: "site",
+        label: "Site Settings",
+        path: "src/_data",
+        format: "json",
+        match: { include: "site" },
+        ui: { allowedActions: { create: false, delete: false }, global: true },
+        fields: [
+          { type: "string", name: "copyright", label: "Footer copyright" },
+          {
+            type: "object",
+            name: "contact",
+            label: "Contact details",
+            fields: [
+              { type: "string", name: "addressLines", label: "Mailing address (one line each)", list: true },
+              { type: "string", name: "bookingEmail", label: "Booking email" },
+            ],
+          },
+        ],
+      },
+
+      // ---------------------------------------------------------------------
+      // Page copy — editable prose blocks per page (grows over time).
+      // ---------------------------------------------------------------------
+      {
+        name: "copy",
+        label: "Page Copy",
+        path: "src/_data",
+        format: "json",
+        match: { include: "copy" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          {
+            type: "object",
+            name: "dates",
+            label: "Dates page",
+            fields: [
+              { type: "string", name: "intro", label: "Intro blurb", ui: { component: "textarea" } },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+});

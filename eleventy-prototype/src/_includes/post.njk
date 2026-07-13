@@ -1,0 +1,16 @@
+---
+layout: base.njk
+navKey: blog.html
+---
+    <div class="container">
+
+      <section>
+        <p class="post-meta"><a href="blog.html">Blog</a> &middot; {{ date | readableDate }}</p>
+        <h1>{{ title }}</h1>
+      </section>
+
+      <div class="post-body">
+{{ content | safe }}
+      </div>
+
+    </div>

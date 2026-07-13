@@ -1,0 +1,92 @@
+/* Phase 2 add-ons: announcement bar + blog. Reuses the tokens defined on
+   :root in style.css (loaded first), so colors/fonts match the site exactly.
+   Kept separate from style.css while on the WIP branch; fold in at cutover. */
+
+/* ---------- Announcement bar ---------- */
+.announce-bar {
+  background: var(--red-dark);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.announce-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0.55rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  position: relative;
+}
+.announce-msg {
+  margin: 0;
+  font-family: var(--font-nav);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: #f3e9e0;
+  text-align: center;
+}
+.announce-msg a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.announce-dismiss {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  color: #f3e9e0;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.announce-dismiss:hover { opacity: 1; }
+
+/* ---------- Blog ---------- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-card {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(213, 213, 213, 0.12);
+}
+.post-card:first-child { padding-top: 0; }
+.post-card h2 {
+  margin: 0 0 0.35rem;
+}
+.post-card h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.post-card h2 a:hover { color: var(--red-nav); }
+.post-meta {
+  font-family: var(--font-nav);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 0.75rem;
+}
+.post-excerpt {
+  margin: 0 0 0.9rem;
+  color: var(--text-dim);
+}
+
+/* Single post: constrain measure and space out prose. */
+.post-body {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.post-body > p { margin: 0 0 1.15rem; }
+.post-body h2 { margin: 2rem 0 0.75rem; }
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}

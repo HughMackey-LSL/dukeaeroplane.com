@@ -1,0 +1,69 @@
+---
+layout: base.njk
+permalink: contact.html
+title: Contact — Duke Aeroplane
+description: Contact Duke Aeroplane (Galen Cassidy Peria) for booking, vinyl orders, and general correspondence.
+navKey: contact.html
+---
+    <div class="container">
+
+      <section class="center">
+        <img class="feature-img rounded" src="images/vintage-post-office-photograph-cu3g4adc6unw1xrt_orig.jpg" alt="Vintage photograph of a post office" loading="lazy">
+      </section>
+
+      <section>
+        <h1>The Duke Would Love to Hear From You.</h1>
+        <p class="lede">He can be reached via the contact form over yonder, or via the fine folks of the United States Postal Service at:<br><br>
+        {% for line in site.contact.addressLines %}{{ line }}{% if not loop.last %}<br>{% endif %}
+        {% endfor %}</p>
+        <p class="center muted">
+          For booking please contact<br>
+          <a href="mailto:{{ site.contact.bookingEmail }}">{{ site.contact.bookingEmail }}</a>
+        </p>
+      </section>
+
+      <hr class="redline">
+
+      <section>
+        <div class="form-grid">
+
+          <div>
+            <h2>Contact the Duke:</h2>
+            <!-- Form backend: create a free form at https://formspree.io and
+                 replace YOUR_FORM_ID below with the ID it gives you. -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <label for="c-name">Name <span class="form-required">*</span></label>
+              <input id="c-name" type="text" name="name" required autocomplete="name">
+
+              <label for="c-email">Email <span class="form-required">*</span></label>
+              <input id="c-email" type="email" name="email" required autocomplete="email">
+
+              <label for="c-message">Comment <span class="form-required">*</span></label>
+              <textarea id="c-message" name="message" rows="5" required></textarea>
+
+              <button class="btn" type="submit">Submit</button>
+            </form>
+          </div>
+
+          <div>
+            <h2>Sign Up for Regular Updates from the Duke:</h2>
+            <!-- Newsletter signups also route through Formspree; replace
+                 YOUR_FORM_ID here too (a second form, or reuse the same one). -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_subject" value="Newsletter signup">
+              <label for="n-email">Email <span class="form-required">*</span></label>
+              <input id="n-email" type="email" name="email" required autocomplete="email">
+
+              <div class="checkbox-row">
+                <input id="n-optin" type="checkbox" name="opted_in" value="yes" required>
+                <label for="n-optin" style="margin:0;">I agree to receiving marketing and promotional materials <span class="form-required">*</span></label>
+              </div>
+
+              <button class="btn" type="submit">Subscribe</button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </div>

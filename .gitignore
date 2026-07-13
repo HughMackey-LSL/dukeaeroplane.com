@@ -2,5 +2,9 @@
 eleventy-prototype/node_modules/
 eleventy-prototype/_site/
 
+# TinaCMS — generated client + local secrets
+eleventy-prototype/tina/__generated__/
+eleventy-prototype/.env
+
 # OS cruft
 .DS_Store

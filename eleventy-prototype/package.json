@@ -1,12 +1,18 @@
 {
   "name": "dukeaeroplane-eleventy-prototype",
   "private": true,
-  "description": "Proof-of-concept: dates.html rendered by Eleventy from an editable data file.",
+  "description": "Eleventy build of dukeaeroplane.com with TinaCMS editing.",
   "scripts": {
     "start": "eleventy --serve --port=8082",
-    "build": "eleventy"
+    "build:eleventy": "eleventy",
+    "dev": "tinacms dev -c \"eleventy --serve --port=8082\"",
+    "build": "tinacms build && eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "tinacms": "^2.0.0",
+    "@tinacms/cli": "^1.5.0"
   }
 }

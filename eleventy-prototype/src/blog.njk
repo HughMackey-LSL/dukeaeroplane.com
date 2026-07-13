@@ -1,0 +1,39 @@
+---
+layout: base.njk
+permalink: blog.html
+title: Blog — Duke Aeroplane
+description: Dispatches, news, and notes from Duke Aeroplane (Galen Cassidy Peria).
+navKey: blog.html
+---
+    <section class="page-hero" aria-labelledby="page-title">
+      <img class="hero-img" src="images/vintage-post-office-photograph-cu3g4adc6unw1xrt_orig.jpg" alt="Vintage photograph of a post office">
+      <div class="hero-tint" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Dispatches &amp; News</p>
+        <h1 class="hero-title" id="page-title"><span class="line"><span>Blog</span></span></h1>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <section>
+        {%- if collections.posts and collections.posts.length %}
+        <ul class="post-list">
+          {%- for post in collections.posts | reverse %}
+          <li class="post-card">
+            <p class="post-meta">{{ post.date | readableDate }}</p>
+            <h2><a href="{{ post.fileSlug }}.html">{{ post.data.title }}</a></h2>
+            <p class="post-excerpt">{{ post.data.description }}</p>
+            <p><a class="btn btn-outline" href="{{ post.fileSlug }}.html">Read more</a></p>
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- else %}
+        <div class="typed-note tape">
+          <p class="type-line">No posts yet<span class="cursor" aria-hidden="true"></span></p>
+        </div>
+        {%- endif %}
+      </section>
+
+    </div>
