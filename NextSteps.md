@@ -1,0 +1,8 @@
+- [x] Figure out Tina Token - Instructions call for Read/Write, but Readonly and Search are all that's available
+  - [ ] Trailer asset to large. Swap for Direct YouTube Link
+- [ ] Figure out Cloudflare pages deployment
+- [ ] Update project docs to reflect status
+- [ ] Test live deployment
+- [ ] Share w/ Galen for feedback and adjustments
+  - [ ] Test CMS login w/ email
+- [ ] Transfer DNS
