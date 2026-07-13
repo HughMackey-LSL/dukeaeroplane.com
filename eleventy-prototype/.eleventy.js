@@ -33,7 +33,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "../css": "css" });
   eleventyConfig.addPassthroughCopy({ "../js": "js" });
   eleventyConfig.addPassthroughCopy({ "../images": "images" });
-  eleventyConfig.addPassthroughCopy({ "../video": "video" });
+  // ../video is NOT copied: the trailer is a 47MB mp4, over Cloudflare
+  // Pages' 25MB per-file limit. The trailer is embedded from YouTube instead
+  // (see theheartbeatthehammer.njk) — nothing in this build needs the file.
 
   // Phase 2 additions (banner styles + dismiss script) kept in their own
   // files so they don't touch the shared style.css / main.js while this is a
