@@ -33,21 +33,35 @@ needs nothing but an email invite.
 1. **Create the project.** Go to <https://app.tina.io> and sign in with the
    GitHub account that owns this repo. Create a project and connect it to the
    `HughMackey-LSL/dukeaeroplane.com` repository, branch `main` (or whichever
-   branch you deploy).
+   branch you deploy). This installs Tina's GitHub App on the repo with write
+   access — that's the actual mechanism that commits saves; see the note below.
 2. **Grab credentials** from the project dashboard:
    - **Client ID** (Project → Overview)
-   - a **Read/Write token** (Project → Tokens)
+   - a **Content token** (Project → Tokens). Tina's token types are named
+     "Content" (read-only) and "Search" — there is no "read/write" token, and
+     that's expected. This token is only used so the *build* can query
+     content via Tina's API; it has nothing to do with how editor saves get
+     written (see below).
 3. **Set them locally:** copy `.env.example` to `.env` and fill in:
    ```
    TINA_PUBLIC_CLIENT_ID=xxxxxxxx
-   TINA_TOKEN=xxxxxxxx
+   TINA_TOKEN=xxxxxxxx   # the Content (read-only) token
    ```
    `.env` is gitignored — never commit it.
 4. **Set the same two vars in Cloudflare Pages** (Phase 4) under the project's
    Environment Variables, so production builds can reach Tina Cloud.
-5. **Invite your friend:** Tina Cloud project → Collaborators → invite by email.
-   He accepts, sets a password/one-time login **with his email — no GitHub
-   account** — and from then on only ever sees the `/admin` editor.
+5. **Invite your friend:** Tina Cloud project → User Management → invite by
+   email, then grant access under the project's Collaborators tab. He accepts
+   and logs in **with his email — no GitHub account** — and from then on only
+   ever sees the `/admin` editor.
+
+**How saves actually get written:** when your friend clicks Save, the commit
+is made by Tina's own GitHub App (installed in step 1), authored as
+`tina-cloud-app` — not by a personal token, and not by his email login
+directly. His Collaborator access is what authorizes *him* to trigger that;
+the token in `.env` plays no part in it. This is a cleaner setup than a shared
+personal-access-token approach: there's no repo-write secret exposed to the
+browser at all.
 
 Production build command (used by Cloudflare Pages):
 ```
