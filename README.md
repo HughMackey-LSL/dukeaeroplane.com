@@ -15,7 +15,7 @@ media.html                  Photo gallery + music videos
 merch.html                  Higher Ground vinyl/digital
 epk.html                    Press kit: quotes, bio, tracks, press photos
 dates.html                  Live dates
-contact.html                Contact + newsletter forms, booking email
+contact.html                Contact form + mailing address
 css/style.css               Single shared stylesheet
 js/main.js                  Mobile nav toggle + gallery lightbox (vanilla JS)
 images/                     All photos/artwork pulled from the original site
@@ -42,14 +42,16 @@ up the change.
 
 ## Things to finish before/after launch
 
-1. **Contact forms** — the old forms posted to Weebly's servers, which won't
-   exist after the move. Both forms on `contact.html` point at
+1. **Contact form** — the old form posted to Weebly's servers, which won't
+   exist after the move. The form on `contact.html` points at
    `https://formspree.io/f/YOUR_FORM_ID`. Create a free form at
    [formspree.io](https://formspree.io) (or any similar service — Web3Forms,
-   Basin, Netlify Forms if hosting on Netlify) and replace `YOUR_FORM_ID` in
-   both places. Until then, the booking email link works fine.
-2. **Newsletter list** — Weebly kept the subscriber list. Export it from the
-   Weebly dashboard before closing the account.
+   Basin, Netlify Forms if hosting on Netlify) and replace `YOUR_FORM_ID`.
+   The direct booking email link was removed for professionalism/security;
+   the contact form is now the only online contact method.
+2. **Newsletter** — the signup form was removed for now (no active newsletter).
+   Weebly still has the old subscriber list; export it from the Weebly
+   dashboard before closing the account, for whenever a newsletter is set up.
 3. **Trailer video** — `video/heartbeat-trailer.mp4` (47 MB) is served
    directly. Fine on most hosts; if bandwidth becomes a concern, upload it
    unlisted to YouTube/Vimeo and swap the `<video>` tag for an iframe embed.

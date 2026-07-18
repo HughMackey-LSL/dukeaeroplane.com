@@ -161,6 +161,46 @@
     update();
   });
 
+  /* ---------- Contact form: inline submit via Formspree AJAX ---------- */
+  // Progressive enhancement: without JS the form POSTs normally and lands on
+  // Formspree's own thank-you page. With JS we submit in the background and
+  // swap in an inline confirmation so the visitor never leaves the site.
+  var contactForm = document.querySelector('form[action*="formspree.io"]');
+  if (contactForm) {
+    var formStatus = contactForm.parentNode.querySelector(".form-status");
+    contactForm.addEventListener("submit", function (e) {
+      // Leave the unconfigured placeholder to POST normally, so a form that
+      // hasn't been wired up yet fails loudly instead of faking success.
+      if (contactForm.action.indexOf("YOUR_FORM_ID") !== -1) return;
+
+      e.preventDefault();
+      var submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { "Accept": "application/json" }
+      }).then(function (res) {
+        if (!res.ok) throw new Error("Bad response");
+        contactForm.reset();
+        contactForm.hidden = true;
+        if (formStatus) {
+          formStatus.classList.remove("error");
+          formStatus.textContent = "Thanks — your message is on its way to the Duke.";
+          formStatus.hidden = false;
+        }
+      }).catch(function () {
+        if (submitBtn) submitBtn.disabled = false;
+        if (formStatus) {
+          formStatus.classList.add("error");
+          formStatus.textContent = "Something went wrong sending that. Please try again in a moment, or reach the Duke by mail.";
+          formStatus.hidden = false;
+        }
+      });
+    });
+  }
+
   /* ---------- Lightbox ---------- */
   var links = Array.prototype.slice.call(
     document.querySelectorAll(".gallery a, .carousel-track a, .filmstrip a, a[data-lightbox]")

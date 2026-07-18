@@ -132,15 +132,15 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   YouTube iframes; trailer is a native `<video>` tag.
 - WCAG AA contrast pass done (see tokens above); EPK quotes all render red.
 - Film release references updated to 2026; footer says 2026.
-- Booking email decoded from Cloudflare obfuscation:
-  galencassidyperia@gmail.com (used as mailto on contact.html).
+- The direct booking email (mailto link) was removed from contact.html for
+  professionalism/security — the contact form is now the only way to reach the
+  Duke online. Do not re-add the address to any page.
 
 ### Outstanding / TODO
-1. **Forms are non-functional**: both forms on contact.html post to
+1. **Contact form is non-functional**: the form on contact.html posts to
    `https://formspree.io/f/YOUR_FORM_ID` (placeholder). User must create a
-   Formspree (or similar) form and replace the ID in both places.
-2. **Newsletter subscriber list** must be exported from the Weebly dashboard
-   before the old account is closed.
+   Formspree (or similar) form and replace the ID. The newsletter signup form
+   was removed (no active newsletter yet — may return later).
 3. **Words page** is a "Lyrics coming soon" placeholder (faithful to the
    original) — lyrics content may arrive later.
 4. **Dates page** lists one event dated April 9, 2025 (now past). User was

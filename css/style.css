@@ -1310,3 +1310,21 @@ form .btn { margin-top: 1.25rem; }
   .record-display:hover .vinyl { animation: none !important; }
   .clipping.tilt-l, .clipping.tilt-r, .typed-note { transform: none !important; }
 }
+
+/* ---------- Contact form: honeypot + submit status ---------- */
+/* Off-screen (not display:none) so bots still see and fill it, but people
+   and screen readers skip it. A filled value tells Formspree it's spam. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.form-status {
+  margin: 1.5rem 0 0;
+  font-family: "Josefin Slab", Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.form-status.error { color: #b23b3b; }
