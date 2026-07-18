@@ -1,8 +1,9 @@
 ---
 title: A Note From the Road
-date: 2026-06-28
-description: The Duke checks in from somewhere north of nowhere, with news of new songs and old ghosts.
+date: 2026-06-28T00:00:00.000Z
+description: 'The Duke checks in from somewhere north of anywhere, with news of new songs and old ghosts.'
 ---
+
 Well, here I am again — somewhere north of nowhere, a cup of gas-station coffee
 going cold on the dashboard and a notebook full of half-finished verses on the
 passenger seat.
