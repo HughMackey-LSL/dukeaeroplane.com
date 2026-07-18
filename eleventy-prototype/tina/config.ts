@@ -73,7 +73,7 @@ export default defineConfig({
       // ---------------------------------------------------------------------
       {
         name: "announcements",
-        label: "Announcements",
+        label: "Announcement Banner",
         path: "src/_data",
         format: "json",
         match: { include: "announcements" },
@@ -103,7 +103,7 @@ export default defineConfig({
       // ---------------------------------------------------------------------
       {
         name: "post",
-        label: "Blog Posts",
+        label: "Announcements",
         path: "src/posts",
         format: "md",
         fields: [
