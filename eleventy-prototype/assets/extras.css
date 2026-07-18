@@ -90,3 +90,36 @@
   height: auto;
   border-radius: 6px;
 }
+
+/* ---------- Words (lyrics / poetry / short works) ---------- */
+/* Index page: category groups reuse the blog's .post-list / .post-card. */
+.words-category {
+  font-family: var(--font-accent);
+  color: var(--red-nav);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+.post-card h3.words-title { margin: 0 0 0.35rem; }
+.words-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+.words-title a:hover { color: var(--red-nav); }
+
+/* Album/song line under a lyric title (index) and on the piece page. */
+.work-source {
+  font-family: var(--font-nav);
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+  margin: 0.25rem 0 0;
+}
+.work-source em { font-style: italic; }
+
+/* Piece page body: verse reads better a touch narrower. Lyrics/poetry keep
+   their authored line breaks (hard breaks -> <br>); stanzas are separate
+   paragraphs, spaced by .post-body > p. Prose short works read as normal
+   paragraphs. */
+.work-body { max-width: 40rem; }
+.work-body--short-works { max-width: 46rem; }

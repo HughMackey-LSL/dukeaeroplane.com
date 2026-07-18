@@ -2,7 +2,7 @@
 layout: base.njk
 permalink: words.html
 title: Words — Duke Aeroplane
-description: Lyrics and writings by Duke Aeroplane (Galen Cassidy Peria).
+description: Lyrics, poetry, and short works by Duke Aeroplane (Galen Cassidy Peria).
 navKey: words.html
 ---
     <section class="page-hero" aria-labelledby="page-title">
@@ -17,11 +17,41 @@ navKey: words.html
 
     <div class="container">
 
+    {%- if collections.words and collections.words.length %}
+      {%- set ordered = [
+        { key: "lyrics", label: "Lyrics" },
+        { key: "poetry", label: "Poetry" },
+        { key: "short-works", label: "Short Works" }
+      ] %}
+      {%- set allWords = collections.words | sort(false, false, "data.title") %}
+      {%- for cat in ordered %}
+        {%- set pieces = allWords | where("data.category", cat.key) %}
+        {%- if pieces.length %}
+      <section>
+        <h2 class="words-category">{{ cat.label }}</h2>
+        <ul class="post-list">
+          {%- for w in pieces %}
+          <li class="post-card">
+            <h3 class="words-title"><a href="{{ w.fileSlug }}.html">{{ w.data.title }}</a></h3>
+            {%- if cat.key == "lyrics" and (w.data.song or w.data.album) %}
+            <p class="post-meta">
+              {%- if w.data.song %}&ldquo;{{ w.data.song }}&rdquo;{% endif %}
+              {%- if w.data.album %}{% if w.data.song %} &middot; {% endif %}from {{ w.data.album }}{% endif %}
+            </p>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+        {%- endif %}
+      {%- endfor %}
+    {%- else %}
       <section class="center">
         <div class="typed-note tape">
-          <p class="type-line">Lyrics coming soon<span class="cursor" aria-hidden="true"></span></p>
+          <p class="type-line">Words coming soon<span class="cursor" aria-hidden="true"></span></p>
           <p class="type-sub">&mdash; the Duke is still hunting for the right ones</p>
         </div>
       </section>
+    {%- endif %}
 
     </div>

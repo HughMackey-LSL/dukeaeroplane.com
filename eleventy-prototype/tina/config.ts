@@ -115,6 +115,51 @@ export default defineConfig({
       },
 
       // ---------------------------------------------------------------------
+      // Words — one Markdown file per piece (lyric, poem, or short work).
+      // Grouped by Category on the Words page; lyrics carry album/song info.
+      // ---------------------------------------------------------------------
+      {
+        name: "word",
+        label: "Words (Lyrics / Poetry)",
+        path: "src/words",
+        format: "md",
+        fields: [
+          { type: "string", name: "title", label: "Title", required: true, isTitle: true },
+          {
+            type: "string",
+            name: "category",
+            label: "Category",
+            required: true,
+            options: [
+              { value: "lyrics", label: "Lyrics" },
+              { value: "poetry", label: "Poetry" },
+              { value: "short-works", label: "Short Works" },
+            ],
+          },
+          {
+            type: "string",
+            name: "album",
+            label: "Album",
+            description: "Lyrics only — the album/release this song is from.",
+          },
+          {
+            type: "string",
+            name: "song",
+            label: "Song title",
+            description: "Lyrics only — use if the song title differs from the title above.",
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Date (optional)",
+            description: "Used only to order pieces; leave blank to sort by title.",
+            ui: { dateFormat: "YYYY-MM-DD" },
+          },
+          { type: "rich-text", name: "body", label: "Text", isBody: true },
+        ],
+      },
+
+      // ---------------------------------------------------------------------
       // Site settings — global copy (footer, contact details).
       // ---------------------------------------------------------------------
       {
@@ -132,7 +177,6 @@ export default defineConfig({
             label: "Contact details",
             fields: [
               { type: "string", name: "addressLines", label: "Mailing address (one line each)", list: true },
-              { type: "string", name: "bookingEmail", label: "Booking email" },
             ],
           },
         ],

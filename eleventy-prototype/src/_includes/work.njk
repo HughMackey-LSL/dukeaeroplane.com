@@ -1,0 +1,29 @@
+---
+layout: base.njk
+navKey: words.html
+---
+{%- set labels = { "lyrics": "Lyrics", "poetry": "Poetry", "short-works": "Short Works" } %}
+    <div class="container">
+
+      <section>
+        <p class="post-meta">
+          <a href="words.html">Words</a> &middot; {{ labels[category] or "Words" }}
+        </p>
+        <h1>{{ title }}</h1>
+        {%- if category == "lyrics" and (album or song) %}
+        <p class="work-source">
+          {%- if song %}&ldquo;{{ song }}&rdquo;{% endif %}
+          {%- if album %}{% if song %} &middot; {% endif %}from <em>{{ album }}</em>{% endif %}
+        </p>
+        {%- endif %}
+      </section>
+
+      <div class="post-body work-body work-body--{{ category }}">
+{{ content | safe }}
+      </div>
+
+      <section>
+        <p><a class="btn btn-outline" href="words.html">&larr; All words</a></p>
+      </section>
+
+    </div>

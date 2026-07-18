@@ -99,6 +99,18 @@ module.exports = function (eleventyConfig) {
     );
   });
 
+  // Filter a list to items whose (dot-path) key equals a value — used to
+  // group the Words collection by category. e.g. items | where("data.category", "lyrics")
+  eleventyConfig.addFilter("where", function (arr, keyPath, value) {
+    if (!Array.isArray(arr)) return [];
+    const parts = String(keyPath).split(".");
+    return arr.filter((item) => {
+      let v = item;
+      for (const p of parts) v = v == null ? undefined : v[p];
+      return v === value;
+    });
+  });
+
   // "2026-07-12" -> "July 12, 2026" for blog post datelines.
   eleventyConfig.addFilter("readableDate", function (value) {
     const d = toDate(value);
