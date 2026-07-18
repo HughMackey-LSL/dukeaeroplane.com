@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects.
+# The Blog page was renamed to Announcements; keep old links working.
+/blog          /announcements   301
+/blog.html     /announcements   301

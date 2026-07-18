@@ -46,6 +46,10 @@ module.exports = function (eleventyConfig) {
   // committed to the repo; existing design images stay under ../images.
   eleventyConfig.addPassthroughCopy({ "uploads": "uploads" });
 
+  // Cloudflare Pages redirects (e.g. the old /blog URL -> /announcements after
+  // the page was renamed). Copied to the site root as _site/_redirects.
+  eleventyConfig.addPassthroughCopy({ "_redirects": "_redirects" });
+
   // "2025-04-09" -> "Wed, April 9th, 2025"  (matches the old hand-typed format)
   eleventyConfig.addFilter("prettyDate", function (value) {
     const d = toDate(value);

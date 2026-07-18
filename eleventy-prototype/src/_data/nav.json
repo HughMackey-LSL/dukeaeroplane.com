@@ -1,7 +1,7 @@
 [
   { "label": "Musics", "url": "musics.html" },
   { "label": "Dates", "url": "dates.html" },
-  { "label": "Announcements", "url": "blog.html" },
+  { "label": "Announcements", "url": "announcements.html" },
   { "label": "Words", "url": "words.html" },
   { "label": "The Heartbeat, The Hammer", "url": "theheartbeatthehammer.html" },
   { "label": "Media", "url": "media.html" },
