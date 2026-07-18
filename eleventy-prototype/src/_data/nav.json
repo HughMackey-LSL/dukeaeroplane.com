@@ -1,11 +1,11 @@
 [
   { "label": "Musics", "url": "musics.html" },
+  { "label": "Dates", "url": "dates.html" },
+  { "label": "Announcements", "url": "blog.html" },
   { "label": "Words", "url": "words.html" },
   { "label": "The Heartbeat, The Hammer", "url": "theheartbeatthehammer.html" },
   { "label": "Media", "url": "media.html" },
   { "label": "Merch", "url": "merch.html" },
   { "label": "EPK", "url": "epk.html" },
-  { "label": "Dates", "url": "dates.html" },
-  { "label": "Blog", "url": "blog.html" },
   { "label": "Contact", "url": "contact.html" }
 ]
