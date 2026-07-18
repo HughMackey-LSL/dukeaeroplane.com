@@ -76,7 +76,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .site-logo { display: inline-block; border: 0; }
-.site-logo img { width: min(340px, 70vw); display: block; }
+.site-logo img { width: min(600px, 70vw); display: block; }
 
 .site-nav {
   background: var(--well);
