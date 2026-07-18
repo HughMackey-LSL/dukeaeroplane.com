@@ -1,14 +1,15 @@
 # AGENTS.md — dukeaeroplane.com
 
-Guidance for AI agents working on this project. Last updated: 2026-07-02.
+Guidance for AI agents working on this project. Last updated: 2026-07-18.
 
 ## What this is
 
-A static recreation of https://www.dukeaeroplane.com/ — the music/film site of
-Galen Cassidy Peria (a.k.a. Duke Aeroplane). The original was built on
-**Weebly** (not Wix, despite early assumptions); this rebuild exists so the
-site can move to generic static hosting. All content, images, and the trailer
-video were scraped from the live Weebly site on 2026-07-02.
+The music/film site of Galen Cassidy Peria (a.k.a. Duke Aeroplane). The original
+was built on **Weebly** (not Wix, despite early assumptions); content, images,
+and the trailer were scraped from the live Weebly site on 2026-07-02. The site is
+now generated with **Eleventy** and edited through **TinaCMS**, deployed on
+**Cloudflare Pages**. (It began as hand-authored root HTML; those root pages were
+removed once the Eleventy build reached parity — the site is Eleventy-only now.)
 
 Owner context: the user (Hugh Mackey) is the artist's friend and collaborator —
 he is the producer/DP of the film featured on the site, and appears on the
@@ -16,25 +17,30 @@ film page. Content changes should stay faithful to the artist's voice.
 
 ## Architecture
 
-Plain HTML/CSS/JS. No framework, no build step, no package manager. Deploy =
-copy the folder to any static host.
+Eleventy (v3) build under `eleventy-prototype/`, with TinaCMS for editing. The
+design/interactivity assets at the repo root are the real, original site files —
+`.eleventy.js` passthrough-copies them into the build untouched.
 
-- 9 pages at the root, filenames match the ORIGINAL Weebly URLs so inbound
-  links survive the migration (`musics.html`, `theheartbeatthehammer.html`,
-  `epk.html`, etc.). Do not rename them.
-- `css/style.css` — single shared stylesheet, design tokens in `:root`.
-- `js/main.js` — vanilla JS: mobile nav toggle, media-page carousel, lightbox.
-- `images/` — all 55 site images (flattened basenames from Weebly's
+- **Pages** are `.njk` templates in `eleventy-prototype/src/` (`index.njk`,
+  `musics.njk`, `theheartbeatthehammer.njk`, …); `permalink` keeps the output
+  filenames matching the ORIGINAL Weebly URLs so inbound links survive. Blog
+  posts are `src/posts/*.md`.
+- **Shared chrome** (header/nav/footer + `<head>`) lives in ONE place:
+  `src/_includes/base.njk`. No more per-page duplication — edit it once.
+- **Global content** (copyright, contact address) is `src/_data/site.json`,
+  editable via TinaCMS.
+- `css/style.css` (repo root) — single shared stylesheet, design tokens in
+  `:root`. Passthrough-copied to `_site/css/`.
+- `js/main.js` (repo root) — vanilla JS: nav toggle, carousel, lightbox, and the
+  contact-form AJAX submit. Passthrough-copied to `_site/js/`.
+- `images/` (repo root) — all site images (flattened basenames from Weebly's
   `/uploads/...` paths). `*_orig.*` files are the full-size versions.
-- `video/heartbeat-trailer.mp4` (47 MB) + poster — self-hosted film trailer.
-- Header/nav/footer markup is duplicated in every page (no templating). A
-  change to shared chrome must be applied to all 9 files — use sed/grep.
 
 ## Conventions
 
 - **Cache-busting is manual**: CSS/JS are linked as `style.css?v=N` /
-  `main.js?v=N`. After editing either file, bump the version in ALL pages:
-  `sed -i '' 's|main.js?v=7|main.js?v=8|' *.html`. Current: CSS v=4, JS v=8.
+  `main.js?v=N` in `src/_includes/base.njk`. After editing either asset, bump the
+  version there (single place now that chrome is templated). Current: v=10.
 - Design tokens (preserve these — they're the original site's look):
   - Page bg `#242424`, content well `#000`, footer band `#BE1E2D`.
   - Heading red `--red-soft: #c23b3b` — 3.98:1 on black, passes WCAG AA for
@@ -65,10 +71,10 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   for free — no per-page markup needed. Effects that fire *inside* a section
   (e.g. the homepage lyric lines) must key off `.reveal.in <descendant>`, NOT a
   class on the inner element (the observer only tags the section).
-- **Texture layers (`.grain`, `.vignette`) are injected by JS**, not in markup,
-  so they stay out of the 9 duplicated heads. They sit at z-index 149–150
-  (above content/nav, below the lightbox at 200) with `pointer-events:none`.
-- Homepage-only pieces live in `index.html`: `.hero` (full-bleed duotone
+- **Texture layers (`.grain`, `.vignette`) are injected by JS**, not in markup.
+  They sit at z-index 149–150 (above content/nav, below the lightbox at 200)
+  with `pointer-events:none`.
+- Homepage-only pieces live in `index.njk`: `.hero` (full-bleed duotone
   portrait via grayscale img + red `mix-blend:color` tint + parallax),
   `.marquee` ticker, `.lyric-verse` (typed reveal), `.bio-collage` (polaroid
   snapshot + drop-cap). The hero/marquee break out of `.container` with
@@ -96,10 +102,10 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   - `.stamp` (Dates) — rotated red rubber "PAST" stamp inside `.event`.
   - `.product` + `.record-display` (Merch) — album `.sleeve` with a
     `.vinyl.disc` sliding out on hover.
-- **Phasing:** ALL phases DONE — Phase 1 (foundation) + homepage hero,
-  Phase 2 (film + music), Phase 3 (words/dates/media/epk/merch collage). Only
-  page not restructured is `contact.html` (kept plain by design; its forms are
-  the pre-existing Formspree TODO).
+- **Phasing:** ALL design phases DONE — Phase 1 (foundation) + homepage hero,
+  Phase 2 (film + music), Phase 3 (words/dates/media/epk/merch collage). The
+  `contact.njk` page is kept plain by design (mailing address + a single
+  Formspree contact form).
 - Nav collapses to a menu button under 700px; between 700–1024px the nav type
   tightens so the full bar fits one line. Active page marked with
   `aria-current="page"` (set per page, remember it when adding pages).
@@ -109,8 +115,9 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
 
 ## Verification
 
-- `.claude/launch.json` defines a `static-site` server (`python3 -m
-  http.server 8321`). Use the preview tools against http://localhost:8321/.
+- Run the Eleventy dev server from `eleventy-prototype/` (`npm start`, port
+  8082) and use the preview tools against http://localhost:8082/. The
+  `.claude/launch.json` `eleventy-prototype` entry starts it.
 - Preview quirks discovered the hard way: smooth programmatic scrolls stall
   and native scroll events don't fire for programmatic scrolls in the embedded
   preview. The carousel JS has a 600ms settle-check fallback partly for this
@@ -124,29 +131,29 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
 ## Status
 
 ### Done
-- All 9 pages built, responsive, faithful to the original look.
+- All pages built via Eleventy, responsive, faithful to the original look;
+  deployed on Cloudflare Pages, edited through TinaCMS.
 - Media page photo gallery is a snap-scroll carousel (arrows, keyboard,
   swipe, live counter) with click-through to a lightbox.
 - Film-stills gallery (film page) and press photos (EPK) are grid + lightbox.
 - Music/EPK use compact lazy-loaded SoundCloud embeds; videos are fluid 16:9
-  YouTube iframes; trailer is a native `<video>` tag.
+  YouTube iframes; the film trailer is an embedded YouTube video (the 47 MB
+  self-hosted mp4 was dropped — over Cloudflare Pages' 25 MB per-file limit).
 - WCAG AA contrast pass done (see tokens above); EPK quotes all render red.
 - Film release references updated to 2026; footer says 2026.
-- The direct booking email (mailto link) was removed from contact.html for
+- The direct booking email (mailto link) was removed from `contact.njk` for
   professionalism/security — the contact form is now the only way to reach the
   Duke online. Do not re-add the address to any page.
+- Contact form is wired to Formspree (`formspree.io/f/mlgqbllz`, → Galen's
+  Gmail) with a honeypot and inline AJAX success/error in `main.js`.
 
 ### Outstanding / TODO
-1. **Contact form is non-functional**: the form on contact.html posts to
-   `https://formspree.io/f/YOUR_FORM_ID` (placeholder). User must create a
-   Formspree (or similar) form and replace the ID. The newsletter signup form
-   was removed (no active newsletter yet — may return later).
-3. **Words page** is a "Lyrics coming soon" placeholder (faithful to the
+1. **Formspree form confirmation**: Galen must click Formspree's one-time
+   "confirm this form" email before submissions forward to his inbox.
+2. **Words page** is a "Lyrics coming soon" placeholder (faithful to the
    original) — lyrics content may arrive later.
-4. **Dates page** lists one event dated April 9, 2025 (now past). User was
-   told; awaiting their call on removing/archiving it.
-5. **No analytics** — old UA tag was dropped (dead since 2023). Add GA4/
+3. **Dates page** — check whether the listed event is past and needs
+   archiving.
+4. **No analytics** — old UA tag was dropped (dead since 2023). Add GA4/
    Plausible if requested.
-6. Consider offloading the 47 MB trailer to YouTube/Vimeo if host bandwidth
-   is a concern.
-7. Not yet a git repository — worth `git init` before further work.
+5. **DNS** — point `dukeaeroplane.com` at Cloudflare Pages at cutover.
