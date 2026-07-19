@@ -918,6 +918,13 @@ form .btn { margin-top: 1.25rem; }
 .page-hero .hero-img { transform: scale(1.04); }
 .page-hero .hero-title { font-size: clamp(2.2rem, 8vw, 4.6rem); }
 
+/* Long single-word banner titles (e.g. "Announcements") overflow the narrow
+   phone viewport; .line has overflow:hidden for the reveal animation, so the
+   tail gets clipped. Ease the size + letter-spacing so they fit. */
+@media (max-width: 480px) {
+  .page-hero .hero-title { font-size: clamp(1.9rem, 7.4vw, 4.6rem); letter-spacing: 1px; }
+}
+
 /* --------------------------------------------------------------------------
    Music — jukebox: album cards with a spinning vinyl and a setlist
    -------------------------------------------------------------------------- */
