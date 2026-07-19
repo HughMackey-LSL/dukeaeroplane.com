@@ -916,6 +916,9 @@ form .btn { margin-top: 1.25rem; }
   background: #000;
 }
 .page-hero .hero-img { transform: scale(1.04); }
+/* Newsies photo's subjects sit in the bottom third; drop the crop so the
+   row of boys is featured instead of the storefront signage above them. */
+.hero-img--low { object-position: center 82%; }
 .page-hero .hero-title { font-size: clamp(2.2rem, 8vw, 4.6rem); }
 
 /* Long single-word banner titles (e.g. "Announcements") overflow the narrow
