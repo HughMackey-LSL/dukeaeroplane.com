@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rl \"vintage-post-office-photograph\" /Users/hughmackey/claude-projects-git/dukeaeroplane.com --include=\"*.md\" --include=\"*.json\" --include=\"*.njk\" --include=\"*.ts\" -not -path \"*/node_modules/*\")"
+    ]
+  }
+}
