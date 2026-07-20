@@ -681,9 +681,12 @@ form .btn { margin-top: 1.25rem; }
   display: inline-block;
   white-space: nowrap;
   will-change: transform;
-  animation: marquee 26s linear infinite;
+  animation: marquee 37s linear infinite;
 }
-.marquee:hover .marquee-track { animation-play-state: paused; }
+/* Paused on a *deliberate* hover only — main.js adds .is-paused after the
+   cursor has rested on the rail a beat. A cursor that merely happens to sit
+   mid-screen while you scroll past shouldn't freeze the ticker. */
+.marquee.is-paused .marquee-track { animation-play-state: paused; }
 .marquee span {
   font-family: var(--font-heading);
   font-weight: 700;

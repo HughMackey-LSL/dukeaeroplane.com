@@ -80,6 +80,24 @@
     heroImg.style.transform = "scale(1.08)";
   }
 
+  /* ---------- Marquee: pause only on a deliberate hover ---------- */
+  // CSS :hover paused the ticker the instant a cursor touched the rail, which
+  // it often does just by resting mid-screen while you scroll past. Wait for
+  // the cursor to settle before pausing; leaving cancels a pending pause.
+  var marquee = document.querySelector(".marquee");
+  if (marquee && !reduceMotion) {
+    var pauseTimer = null;
+    marquee.addEventListener("mouseenter", function () {
+      pauseTimer = window.setTimeout(function () {
+        marquee.classList.add("is-paused");
+      }, 500);
+    });
+    marquee.addEventListener("mouseleave", function () {
+      window.clearTimeout(pauseTimer);
+      marquee.classList.remove("is-paused");
+    });
+  }
+
   /* ---------- Nav: shrink + shadow once the page starts scrolling ---------- */
   var nav = document.querySelector(".site-nav");
   if (nav) {
