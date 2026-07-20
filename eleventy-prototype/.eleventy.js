@@ -33,6 +33,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "../css": "css" });
   eleventyConfig.addPassthroughCopy({ "../js": "js" });
   eleventyConfig.addPassthroughCopy({ "../images": "images" });
+  // The site's favicons — the red "G" mark, extracted from the live
+  // dukeaeroplane.com. Sources live at the repo root and are served from the
+  // site root: legacy .ico, a scalable .svg (vectorized from the mark),
+  // 16/32px PNGs, and a 180px apple-touch-icon for iOS home screens.
+  eleventyConfig.addPassthroughCopy({ "../favicon.ico": "favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "../favicon.svg": "favicon.svg" });
+  eleventyConfig.addPassthroughCopy({ "../favicon-32x32.png": "favicon-32x32.png" });
+  eleventyConfig.addPassthroughCopy({ "../favicon-16x16.png": "favicon-16x16.png" });
+  eleventyConfig.addPassthroughCopy({ "../apple-touch-icon.png": "apple-touch-icon.png" });
   // ../video is NOT copied: the trailer is a 47MB mp4, over Cloudflare
   // Pages' 25MB per-file limit. The trailer is embedded from YouTube instead
   // (see theheartbeatthehammer.njk) — nothing in this build needs the file.
