@@ -92,6 +92,13 @@ export default defineConfig({
               { type: "boolean", name: "active", label: "Show this announcement" },
               { type: "string", name: "message", label: "Message", required: true, ui: { component: "textarea" } },
               { type: "string", name: "url", label: "Link (optional, e.g. contact.html)" },
+              {
+                type: "string",
+                name: "linkLabel",
+                label: "Link button text (optional)",
+                description:
+                  "Fill in to show a clear clickable button after the message, e.g. \"Shop the vinyl\". Leave blank to show just the message (if a Link is set, the whole banner stays clickable).",
+              },
               { type: "datetime", name: "expires", label: "Hide after (optional)", ui: { dateFormat: "YYYY-MM-DD" } },
             ],
           },

@@ -30,6 +30,24 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+/* Optional call-to-action: a distinct pill so visitors clearly see a link. */
+.announce-msg a.announce-cta {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.12rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.announce-msg a.announce-cta:hover,
+.announce-msg a.announce-cta:focus-visible {
+  background: #fff;
+  color: var(--red-dark);
+  border-color: #fff;
+}
 .announce-dismiss {
   position: absolute;
   right: 0.5rem;

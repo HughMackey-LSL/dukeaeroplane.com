@@ -30,7 +30,7 @@
   {%- if ann %}
   <div class="announce-bar" data-announce-id="{{ ann.id }}" role="region" aria-label="Announcement">
     <div class="announce-inner">
-      <p class="announce-msg">{% if ann.url %}<a href="{{ ann.url }}">{{ ann.message }}</a>{% else %}{{ ann.message }}{% endif %}</p>
+      <p class="announce-msg">{% if ann.url and ann.linkLabel %}{{ ann.message }} <a class="announce-cta" href="{{ ann.url }}">{{ ann.linkLabel }}</a>{% elif ann.url %}<a href="{{ ann.url }}">{{ ann.message }}</a>{% else %}{{ ann.message }}{% endif %}</p>
       <button class="announce-dismiss" type="button" aria-label="Dismiss announcement">&times;</button>
     </div>
   </div>
