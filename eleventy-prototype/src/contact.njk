@@ -5,41 +5,51 @@ title: Contact — Duke Aeroplane
 description: Contact Duke Aeroplane (Galen Cassidy Peria) for booking, vinyl orders, and general correspondence.
 navKey: contact.html
 ---
+    <section class="page-hero" aria-labelledby="page-title">
+      <img class="hero-img" src="images/vintage-post-office-photograph-cu3g4adc6unw1xrt_orig.jpg" alt="Vintage photograph of a post office" width="1100" height="619">
+      <div class="hero-tint" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Correspondence</p>
+        <h1 class="hero-title" id="page-title"><span class="line"><span>Contact</span></span></h1>
+      </div>
+    </section>
+
     <div class="container">
 
-      <section class="center">
-        <img class="feature-img rounded" src="images/vintage-post-office-photograph-cu3g4adc6unw1xrt_orig.jpg" alt="Vintage photograph of a post office" loading="lazy">
-      </section>
+      <div class="form-grid">
 
-      <section>
-        <h1>The Duke Would Love to Hear From You.</h1>
-        <p class="lede">He can be reached via the contact form below, or via the fine folks of the United States Postal Service at:<br><br>
-        {% for line in site.contact.addressLines %}{{ line }}{% if not loop.last %}<br>{% endif %}
-        {% endfor %}</p>
-      </section>
+        <section>
+          <h2>Contact the Duke</h2>
+          <p class="lede">The Duke would love to hear from you — send a note below.</p>
+          <!-- Formspree endpoint (submissions land in Galen's Gmail). -->
+          <form action="https://formspree.io/f/mlgqbllz" method="POST">
+            <label for="c-name">Name <span class="form-required">*</span></label>
+            <input id="c-name" type="text" name="name" required autocomplete="name">
 
-      <hr class="redline">
+            <label for="c-email">Email <span class="form-required">*</span></label>
+            <input id="c-email" type="email" name="email" required autocomplete="email">
 
-      <section class="container-narrow">
-        <h2>Contact the Duke:</h2>
-        <!-- Formspree endpoint (submissions land in Galen's Gmail). -->
-        <form action="https://formspree.io/f/mlgqbllz" method="POST">
-          <label for="c-name">Name <span class="form-required">*</span></label>
-          <input id="c-name" type="text" name="name" required autocomplete="name">
+            <label for="c-message">Comment <span class="form-required">*</span></label>
+            <textarea id="c-message" name="message" rows="5" required></textarea>
 
-          <label for="c-email">Email <span class="form-required">*</span></label>
-          <input id="c-email" type="email" name="email" required autocomplete="email">
+            <!-- Honeypot: hidden from people, tempts bots. Formspree silently
+                 discards any submission where this field is filled in. -->
+            <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-          <label for="c-message">Comment <span class="form-required">*</span></label>
-          <textarea id="c-message" name="message" rows="5" required></textarea>
+            <button class="btn" type="submit">Submit</button>
+          </form>
+          <p class="form-status" role="status" aria-live="polite" hidden></p>
+        </section>
 
-          <!-- Honeypot: hidden from people, tempts bots. Formspree silently
-               discards any submission where this field is filled in. -->
-          <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <aside class="contact-aside">
+          <h2>By Post</h2>
+          <p class="lede">Or reach him via the fine folks of the United States Postal Service:</p>
+          <p class="contact-address">
+          {% for line in site.contact.addressLines %}{{ line }}{% if not loop.last %}<br>{% endif %}
+          {% endfor %}</p>
+        </aside>
 
-          <button class="btn" type="submit">Submit</button>
-        </form>
-        <p class="form-status" role="status" aria-live="polite" hidden></p>
-      </section>
+      </div>
 
     </div>

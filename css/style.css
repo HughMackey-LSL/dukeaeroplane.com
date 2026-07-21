@@ -494,6 +494,24 @@ figcaption { color: var(--text-dim); font-size: .85rem; text-align: center; padd
   .form-grid { grid-template-columns: 1fr; }
 }
 
+/* Contact page: the "By Post" column beside the form. The typewriter face
+   and hairline rule give the mailing address a postmarked, correspondence feel. */
+.contact-aside { align-self: start; }
+.contact-aside h2 { margin-top: 0; }
+.contact-address {
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text);
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+}
+@media (max-width: 760px) {
+  /* Stacked: give the address room to breathe below the form. */
+  .contact-aside { margin-top: 1rem; }
+}
+
 form label {
   display: block;
   font-size: .9rem;
