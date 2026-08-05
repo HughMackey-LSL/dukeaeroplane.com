@@ -1,7 +1,7 @@
 {
   "shows": [
     {
-      "date": "2026-07-05T00:00:00.000Z",
+      "date": "2026-07-05",
       "time": "7–9 PM",
       "venue": "Paper and Pencil Restaurant and Lounge",
       "venueUrl": "https://www.paperandpencilrestaurant.com/livemusic",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "date": "2025-04-09T00:00:00.000Z",
+      "date": "2025-04-09",
       "time": "7–10 PM",
       "venue": "Marigny Studio",
       "address": "535 Marigny St, New Orleans, LA",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "date": "2026-08-07T00:00:00.000Z",
+      "date": "2026-08-07",
       "venue": "Private Event",
       "address": "Maine",
       "details": [
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "date": "2026-08-15T00:00:00.000Z",
+      "date": "2026-08-15",
       "time": "2pm-12am",
       "venue": "Peria's Porch",
       "address": "Ticonderoga, NY",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "date": "2026-11-06T00:00:00.000Z",
+      "date": "2026-11-06",
       "time": "7pm",
       "venue": "The Broad Theater",
       "venueUrl": "https://www.thebroadtheater.com/home",
