@@ -8,6 +8,42 @@ const branch =
   process.env.HEAD ||
   "main";
 
+// Calendar days, not instants.
+//
+// Tina's stock `datetime` handling round-trips a date through a moment in time:
+// it saves `new Date(value).toISOString()` and redisplays it with `moment(value)`
+// — that is, in the *browser's* timezone. So a show stored as
+// "2026-11-06T00:00:00.000Z" shows up as 2026-11-05 in the CMS for an editor
+// anywhere west of UTC, while the site (which formats in UTC — see .eleventy.js)
+// prints November 6th. Nothing here means an instant; a show date is a day on a
+// calendar. Keeping these fields as plain "YYYY-MM-DD" strings on both sides of
+// the round trip removes the timezone from the picture entirely, and matches how
+// the JSON/front matter read before the CMS existed.
+const pad = (n: number) => String(n).padStart(2, "0");
+
+const dateOnly = (value: any) => {
+  if (!value) return value;
+  // The calendar picker hands back a moment (local midnight of the day clicked).
+  if (typeof value.format === "function") return value.format("YYYY-MM-DD");
+  if (value instanceof Date) {
+    return `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())}`;
+  }
+  if (typeof value !== "string") return value;
+  // Either "2026-11-06" as typed, or a legacy "2026-11-06T00:00:00.000Z". Both
+  // spell the day out up front, so read it off rather than re-deriving it from a
+  // Date — that's the round trip that loses the day in the first place. Anything
+  // else (a half-typed string) passes through untouched.
+  const ymd = value.match(/^(\d{4}-\d{2}-\d{2})/);
+  return ymd ? ymd[1] : value;
+};
+
+// Shared `ui` for every date field in the schema.
+const dateFieldUI = {
+  dateFormat: "YYYY-MM-DD",
+  parse: dateOnly,
+  format: dateOnly,
+};
+
 export default defineConfig({
   branch,
 
@@ -57,7 +93,7 @@ export default defineConfig({
               itemProps: (item) => ({ label: item?.venue || "New show" }),
             },
             fields: [
-              { type: "datetime", name: "date", label: "Date", required: true, ui: { dateFormat: "YYYY-MM-DD" } },
+              { type: "datetime", name: "date", label: "Date", required: true, ui: dateFieldUI },
               { type: "string", name: "time", label: "Time (e.g. 7–9 PM)" },
               { type: "string", name: "venue", label: "Venue", required: true },
               { type: "string", name: "venueUrl", label: "Venue link (optional)" },
@@ -99,7 +135,7 @@ export default defineConfig({
                 description:
                   "Fill in to show a clear clickable button after the message, e.g. \"Shop the vinyl\". Leave blank to show just the message (if a Link is set, the whole banner stays clickable).",
               },
-              { type: "datetime", name: "expires", label: "Hide after (optional)", ui: { dateFormat: "YYYY-MM-DD" } },
+              { type: "datetime", name: "expires", label: "Hide after (optional)", ui: dateFieldUI },
             ],
           },
         ],
@@ -115,7 +151,7 @@ export default defineConfig({
         format: "md",
         fields: [
           { type: "string", name: "title", label: "Title", required: true, isTitle: true },
-          { type: "datetime", name: "date", label: "Date", required: true, ui: { dateFormat: "YYYY-MM-DD" } },
+          { type: "datetime", name: "date", label: "Date", required: true, ui: dateFieldUI },
           { type: "string", name: "description", label: "Excerpt / summary", ui: { component: "textarea" } },
           { type: "rich-text", name: "body", label: "Body", isBody: true },
         ],
@@ -160,7 +196,7 @@ export default defineConfig({
             name: "date",
             label: "Date (optional)",
             description: "Used only to order pieces; leave blank to sort by title.",
-            ui: { dateFormat: "YYYY-MM-DD" },
+            ui: dateFieldUI,
           },
           { type: "rich-text", name: "body", label: "Text", isBody: true },
         ],
