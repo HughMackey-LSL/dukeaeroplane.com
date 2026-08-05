@@ -38,6 +38,15 @@
       "details": [
         "\"The Heartbeat, The Hammer\" Premier Screening"
       ]
+    },
+    {
+      "date": "2026-08-16T00:00:00.000Z",
+      "time": "2pm-12am",
+      "venue": "Peria's Porch",
+      "address": "Ticonderoga, NY",
+      "details": [
+        "Sunshine Daydream Party"
+      ]
     }
   ]
 }
