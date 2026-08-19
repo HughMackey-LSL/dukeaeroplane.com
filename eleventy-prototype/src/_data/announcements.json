@@ -6,6 +6,14 @@
       "message": "“Higher Ground” is back in stock on vinyl — drop the Duke a line to grab a copy.",
       "url": "contact.html",
       "linkLabel": "Grab a copy!"
+    },
+    {
+      "id": "Heartbeat Premier",
+      "active": true,
+      "message": "\"The Heartbeat, The Hammer\" World Premier: Thursday Nov. 5th at The Broad Theater, New Orleans !!!",
+      "url": "https://www.thebroadtheater.com/movie/the-heartbeat-the-hammer",
+      "linkLabel": "BUY TICKETS HERE",
+      "expires": "2026-11-06T00:00:00.000Z"
     }
   ]
 }
