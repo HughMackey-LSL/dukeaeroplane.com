@@ -3,8 +3,6 @@ title: A Congress of Cats
 category: poetry
 ---
 
-A Congress of Cats
-
 there is a congress of cats on the block tonight
 
 out among the garbage cans and potted palms
