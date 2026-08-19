@@ -25,7 +25,7 @@ i am smoking a slim cuban cigar
 
 and wondering how long it will be
 
-before i am again somewhere lacking in these 
+before i am again somewhere lacking in these
 
 inconvenient embargoes
 
@@ -93,4 +93,4 @@ don’t you weep no more
 
 -april 4, 2022
 
-  new orleans, LA
+new orleans, LA
