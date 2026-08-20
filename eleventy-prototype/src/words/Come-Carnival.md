@@ -35,7 +35,7 @@ a candid kaleidoscopic mix
 
 where every song is sung
 
-I hear it now upon the stars
+I hear it now amidst the stars
 
 rattling betwixt the cars
 
