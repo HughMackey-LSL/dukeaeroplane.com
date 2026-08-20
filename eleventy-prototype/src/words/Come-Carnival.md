@@ -7,7 +7,7 @@ there upon the cusp of evening
 
 my eyes are bright, my breast is heaving
 
-all the things i'm taking-leaving 
+all the things i'm taking-leaving
 
 as if they were my own
 
@@ -41,7 +41,7 @@ rattling betwixt the cars
 
 spilling from the crowded bars
 
-squawking in the park 
+squawking in the park
 
 festooned in trees and scintillating
 
@@ -67,6 +67,6 @@ I love this city like I love breathing
 
 if you don't believe me you don't believe
 
--Carnival 2024
+*-Carnival 2024*
 
-  New Orleans
+*New Orleans*
