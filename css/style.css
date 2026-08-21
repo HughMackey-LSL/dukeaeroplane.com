@@ -438,6 +438,9 @@ figcaption { color: var(--text-dim); font-size: .85rem; text-align: center; padd
 .sc-embed { margin-bottom: 1.25rem; }
 .sc-embed iframe { display: block; width: 100%; border: 0; border-radius: 3px; }
 
+.bc-embed { margin-bottom: 1.25rem; }
+.bc-embed iframe { display: block; width: 100%; border: 0; border-radius: 3px; }
+
 .track-list { display: grid; gap: 1.25rem; }
 
 /* --------------------------------------------------------------------------
