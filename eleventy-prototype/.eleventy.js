@@ -5,6 +5,29 @@
 // only assembles HTML from templates + data — the browser then runs the exact
 // same grain/parallax/scroll-reveal/nav code as the hand-authored site.
 
+const fs = require("node:fs");
+const path = require("node:path");
+const crypto = require("node:crypto");
+
+// Where a built URL comes from on disk. The passthrough copies below serve the
+// repo-root css/ and js/ at those URLs, so hashing has to look outside this
+// directory. Resolved from __dirname, not cwd, so the build works whether
+// eleventy runs from here or from the repo root.
+const ASSET_SOURCES = {
+  "css/": path.join(__dirname, "..", "css"),
+  "js/": path.join(__dirname, "..", "js"),
+  "assets/": path.join(__dirname, "assets"),
+};
+
+function assetSourcePath(urlPath) {
+  for (const [prefix, dir] of Object.entries(ASSET_SOURCES)) {
+    if (urlPath.startsWith(prefix)) {
+      return path.join(dir, urlPath.slice(prefix.length));
+    }
+  }
+  return null;
+}
+
 function ordinal(n) {
   const s = ["th", "st", "nd", "rd"];
   const v = n % 100;
@@ -58,6 +81,33 @@ module.exports = function (eleventyConfig) {
   // Cloudflare Pages redirects (e.g. the old /blog URL -> /announcements after
   // the page was renamed). Copied to the site root as _site/_redirects.
   eleventyConfig.addPassthroughCopy({ "_redirects": "_redirects" });
+
+  // "css/style.css" -> "css/style.css?v=1f4a9c02" — the query is a hash of the
+  // file's own bytes, so it changes exactly when the file does and never when
+  // it doesn't. This replaced a hand-typed ?v=15 that had to be remembered on
+  // every CSS edit; when it wasn't, returning visitors kept the stale asset.
+  eleventyConfig.addFilter("cacheBust", function (urlPath) {
+    const source = assetSourcePath(urlPath);
+    if (!source) {
+      console.warn(`[cacheBust] no source mapped for "${urlPath}" — serving unversioned`);
+      return urlPath;
+    }
+    let bytes;
+    try {
+      bytes = fs.readFileSync(source);
+    } catch (err) {
+      console.warn(`[cacheBust] cannot read ${source} (${err.code}) — serving "${urlPath}" unversioned`);
+      return urlPath;
+    }
+    const hash = crypto.createHash("sha1").update(bytes).digest("hex").slice(0, 8);
+    return `${urlPath}?v=${hash}`;
+  });
+
+  // The hashes above are baked into every page, so a change to the real assets
+  // has to re-render the HTML — not just re-copy the file, which is all
+  // passthrough copy would do on its own in --serve.
+  eleventyConfig.addWatchTarget("../css");
+  eleventyConfig.addWatchTarget("../js");
 
   // "2025-04-09" -> "Wed, April 9th, 2025"  (matches the old hand-typed format)
   eleventyConfig.addFilter("prettyDate", function (value) {

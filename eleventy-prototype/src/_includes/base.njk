@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&family=Josefin+Slab:wght@400;600;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=16">
-  <link rel="stylesheet" href="assets/extras.css">
+  <link rel="stylesheet" href="{{ 'css/style.css' | cacheBust }}">
+  <link rel="stylesheet" href="{{ 'assets/extras.css' | cacheBust }}">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -61,7 +61,7 @@
     <div class="container">{{ site.copyright }}</div>
   </footer>
 
-  <script src="js/main.js?v=12"></script>
-  <script src="assets/announce.js" defer></script>
+  <script src="{{ 'js/main.js' | cacheBust }}"></script>
+  <script src="{{ 'assets/announce.js' | cacheBust }}" defer></script>
 </body>
 </html>
