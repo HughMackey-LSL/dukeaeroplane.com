@@ -110,12 +110,32 @@ action on `main` in that dashboard.
 | **Shows / Dates** | `src/_data/shows.json` | Add/remove/reorder shows; past ones auto-stamp "Past". |
 | **Announcements** | `src/_data/announcements.json` | The site-wide banner; toggle "active", optional expiry. |
 | **Blog Posts** | `src/posts/*.md` | Create/edit posts with a rich-text body. |
-| **Words (Lyrics / Poetry)** | `src/words/*.md` | Create/edit pieces; pick a category (Lyrics / Poetry / Short Works); lyrics carry album + song. Grouped by category on the Words page. |
+| **Words (Lyrics / Poetics)** | `src/words/*.md` | Create/edit pieces; pick a category (Lyrics / Poetics / Short Works); lyrics carry album + song. Grouped by category on the Words page. See "Writing verse" below. |
 | **Site Settings** | `src/_data/site.json` | Footer copyright, contact mailing address. |
 | **Page Copy** | `src/_data/copy.json` | Editable prose blocks (currently the Dates intro; grows over time). |
 
 Structural changes (new pages, layout, styling) stay in the templates and go
 through you — by design, so the editor can't break the layout.
+
+### Writing verse (lyrics and poetics)
+
+The Text box treats **Enter** and **Shift+Enter** as two different things:
+
+| Key | Makes | Use it for |
+|---|---|---|
+| **Enter** | a new stanza | the gap between stanzas or verses |
+| **Shift+Enter** | a new line | every line inside a stanza |
+
+So a stanza is typed as line, Shift+Enter, line, Shift+Enter, line — then a
+plain Enter to start the next stanza.
+
+Pressing Enter for every line is what makes a piece come out uniformly
+double-spaced: each line becomes its own stanza. Note that a blank line typed
+with Enter twice does *not* survive saving — the empty paragraph is dropped —
+so Shift+Enter is the only way to get lines to sit together.
+
+Formatting (bold, italics, links) works from the toolbar as usual; there is no
+markdown syntax to learn.
 
 ## Notes / follow-ups
 

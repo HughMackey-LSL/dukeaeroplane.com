@@ -163,7 +163,7 @@ export default defineConfig({
       // ---------------------------------------------------------------------
       {
         name: "word",
-        label: "Words (Lyrics / Poetry)",
+        label: "Words (Lyrics / Poetics)",
         path: "src/words",
         format: "md",
         fields: [
@@ -175,7 +175,9 @@ export default defineConfig({
             required: true,
             options: [
               { value: "lyrics", label: "Lyrics" },
-              { value: "poetry", label: "Poetry" },
+              // Label only — the "poetry" value is the key words.njk groups
+              // on, so it stays put; renaming it would orphan existing pieces.
+              { value: "poetry", label: "Poetics" },
               { value: "short-works", label: "Short Works" },
             ],
           },
@@ -198,7 +200,15 @@ export default defineConfig({
             description: "Used only to order pieces; leave blank to sort by title.",
             ui: dateFieldUI,
           },
-          { type: "rich-text", name: "body", label: "Text", isBody: true },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Text",
+            isBody: true,
+            description:
+              "Enter starts a new stanza. Shift+Enter starts a new line inside the " +
+              "same stanza — use it for the lines of a verse.",
+          },
         ],
       },
 

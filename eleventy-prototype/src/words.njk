@@ -2,7 +2,7 @@
 layout: base.njk
 permalink: words.html
 title: Words — Duke Aeroplane
-description: Lyrics, poetry, and short works by Duke Aeroplane (Galen Cassidy Peria).
+description: Lyrics, poetics, and short works by Duke Aeroplane (Galen Cassidy Peria).
 navKey: words.html
 ---
     <section class="page-hero" aria-labelledby="page-title">
@@ -20,7 +20,7 @@ navKey: words.html
     {%- if collections.words and collections.words.length %}
       {%- set ordered = [
         { key: "lyrics", label: "Lyrics" },
-        { key: "poetry", label: "Poetry" },
+        { key: "poetry", label: "Poetics" },
         { key: "short-works", label: "Short Works" }
       ] %}
       {%- set allWords = collections.words | sort(false, false, "data.title") %}
