@@ -19,4 +19,7 @@
 - Words: `A-Congress-of-Cats.md` still needs its stanza breaks re-done by Galen
   (every line is its own paragraph, so it reads uniformly double-spaced)
 - Words: `New-Orlean-Night.md` is missing an "s" in the filename, which is also
-  its URL — rename in Tina if the address matters
+  its URL. Low priority — nothing links to it directly. To fix it, use **Rename**
+  in the *Words (Lyrics / Poetics)* **list** view (the per-row action menu, next
+  to Duplicate and Delete) — it is not in the piece's editing form, which only
+  exposes the title and content fields. Renaming changes the URL to match.

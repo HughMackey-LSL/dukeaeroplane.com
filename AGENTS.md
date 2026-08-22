@@ -189,6 +189,9 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
    documented) and reads uniformly double-spaced until he re-breaks it; the
    other pieces are correct. `New-Orlean-Night.md` is missing an "s" in its
    filename, which is also its URL — harmless, nothing links to it directly.
+   Renaming is possible in the CMS but lives in the collection **list** view's
+   per-row action menu (Rename, beside Duplicate/Delete), not in the editing
+   form; it is gated on `ui.allowedActions.delete`, which defaults to true.
 3. **Dates page** — check whether the listed event is past and needs
    archiving.
 4. **No analytics** — old UA tag was dropped (dead since 2023). Add GA4/
