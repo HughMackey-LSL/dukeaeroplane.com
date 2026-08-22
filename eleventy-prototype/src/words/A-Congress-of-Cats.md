@@ -5,7 +5,6 @@ category: poetry
 
 
 
-
 there is a congress of cats on the block tonight
 
 out among the garbage cans and potted palms
@@ -91,7 +90,6 @@ something to the effect of:
 attention all creatures great and small
 
 don’t you weep no more
-
 
 
 
