@@ -6,7 +6,8 @@
 - [x] Share w/ Galen for feedback and adjustments
   - [x] Test CMS login w/ email — Galen is authoring in Tina Cloud; his edits
         land on `main` as "TinaCMS content update" commits
-- [ ] Transfer DNS
+- [x] Transfer DNS — dukeaeroplane.com is on Cloudflare nameservers and serving
+      the Pages build over HTTPS (apex and www both resolve)
 
 
 # Possible changes

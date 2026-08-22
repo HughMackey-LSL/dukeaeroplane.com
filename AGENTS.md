@@ -196,4 +196,9 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
    archiving.
 4. **No analytics** — old UA tag was dropped (dead since 2023). Add GA4/
    Plausible if requested.
-5. **DNS** — point `dukeaeroplane.com` at Cloudflare Pages at cutover.
+5. **DNS** — done: `dukeaeroplane.com` is on Cloudflare nameservers and serves
+   the Pages build over HTTPS. Note the apex and `www` each answer 200 in their
+   own right, with no redirect between them, so the site is reachable at two
+   addresses; `src/index.njk` sets `og:url` to the `www` form. Worth picking one
+   as canonical and redirecting the other (a Cloudflare redirect rule, or an
+   absolute-URL entry in `_redirects`) if duplicate URLs matter.
