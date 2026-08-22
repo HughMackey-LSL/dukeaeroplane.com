@@ -18,8 +18,7 @@
 - Update Blog header image to something new
 - Words: `A-Congress-of-Cats.md` still needs its stanza breaks re-done by Galen
   (every line is its own paragraph, so it reads uniformly double-spaced)
-- Words: `New-Orlean-Night.md` is missing an "s" in the filename, which is also
-  its URL. Low priority — nothing links to it directly. To fix it, use **Rename**
-  in the *Words (Lyrics / Poetics)* **list** view (the per-row action menu, next
-  to Duplicate and Delete) — it is not in the piece's editing form, which only
-  exposes the title and content fields. Renaming changes the URL to match.
+- ~~Words: the New Orleans Night filename was missing an "s".~~ Renamed in Tina;
+  it is now `New-Orleans-Night.md` at a matching URL. For future renames: the
+  **Rename** action is in the collection **list** view's per-row menu (beside
+  Duplicate and Delete), not in the piece's editing form.
