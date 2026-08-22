@@ -1,11 +1,8 @@
 ---
-title: New Orlean Night
+title: New Orleans Night
 category: lyrics
 album: 'New Orleans Night: Live in New Orleans'
 ---
-
-
-
 
 with a pocket of poesy and a heart full of song
 I reeled and I sputtered, I stumbled along
@@ -57,14 +54,14 @@ New Orleans night!
 New Orleans night!
 New Orleans night!
 
-and all of the hours are lost 
+and all of the hours are lost
 in these showers and torrents of rain
-until only wet sidewalk 
+until only wet sidewalk
 and scripture remain
 
 there's ice in my drink and a storm out at sea
 les bon temps roulez, laissez-faire, mon ami
-there are cats in my ceiling 
+there are cats in my ceiling
 and chickens gone wild in my yard
 
 and the feral children play their pots and pans
@@ -72,11 +69,7 @@ I've no right here to make any demands
 but my eyes are wide open
 and my heart is free and unbarred
 
-New Orleans night! 
 New Orleans night!
 New Orleans night!
 New Orleans night!
-
-
-
-
+New Orleans night!
