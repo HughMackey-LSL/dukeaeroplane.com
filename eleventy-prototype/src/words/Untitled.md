@@ -4,6 +4,7 @@ category: poetry
 ---
 
 
+
 there in the place of the passing of time
 the game goes along with assurance
 manifold manifest myriad lines
