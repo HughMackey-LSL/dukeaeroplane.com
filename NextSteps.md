@@ -16,7 +16,10 @@
   address was removed and the Formspree form is the only route. Don't re-add it.
 - ~~Naming of "Blog" to "Updates," "Announcements" or similar?~~ Done — the page
   is "Announcements"; `_redirects` keeps the old `/blog` URL working.
-- Update Blog header image to something new
+- ~~Update Blog header image to something new~~ Done — the Announcements hero
+  is now Lewis Hine's photograph of newsboys smoking outside a storefront
+  (`images/newsies-photographs-lewis-hine.jpg`), with `.hero-img--low` to pull
+  the crop down to the faces.
 - Words: `A-Congress-of-Cats.md` still needs its stanza breaks re-done by Galen
   (every line is its own paragraph, so it reads uniformly double-spaced)
 - ~~Words: the New Orleans Night filename was missing an "s".~~ Renamed in Tina;
