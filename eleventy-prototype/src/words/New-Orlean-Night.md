@@ -4,6 +4,7 @@ category: lyrics
 album: 'New Orleans Night: Live in New Orleans'
 ---
 
+
 with a pocket of poesy and a heart full of song
 I reeled and I sputtered, I stumbled along
 the papers and the bottles and the mystified throng
@@ -73,3 +74,4 @@ New Orleans night!
 New Orleans night!
 New Orleans night!
 New Orleans night!
+
