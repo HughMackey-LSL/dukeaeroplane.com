@@ -135,9 +135,18 @@
 }
 .work-source em { font-style: italic; }
 
-/* Piece page body: verse reads better a touch narrower. Lyrics/poetry keep
-   their authored line breaks (hard breaks -> <br>); stanzas are separate
+/* Piece page body: verse reads better a touch narrower. Stanzas are separate
    paragraphs, spaced by .post-body > p. Prose short works read as normal
    paragraphs. */
 .work-body { max-width: 40rem; }
 .work-body--short-works { max-width: 46rem; }
+
+/* Keep the line breaks the author typed. Tina writes a Shift+Enter break as a
+   plain newline inside the paragraph and reads it back the same way, so in the
+   editor it is a line break — but CommonMark calls a bare newline a *soft*
+   break and renders it as a space, which ran every stanza together. pre-line
+   honours those newlines. It sits on the paragraph rather than on .work-body so
+   the template's own indentation between block tags isn't preserved too, and it
+   is a no-op for prose: Tina writes a paragraph as one long line, never
+   wrapped, so there are no newlines inside one to preserve. */
+.work-body p { white-space: pre-line; }
