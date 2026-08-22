@@ -3,7 +3,6 @@ title: A Congress of Cats
 category: poetry
 ---
 
-
 there is a congress of cats on the block tonight
 out among the garbage cans and potted palms
 the chipped ramshackle patchwork-pavement
@@ -52,4 +51,4 @@ attention all creatures great and small
 don’t you weep no more
 
 *-April 4, 2022
-* N*ew Orleans, LA*
+ New Orleans, LA*
