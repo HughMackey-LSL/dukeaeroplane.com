@@ -4,9 +4,6 @@ category: lyrics
 album: 'New Orleans Night: Live in New Orleans'
 ---
 
-
-
-
 with a pocket of poesy and a heart full of song
 I reeled and I sputtered, I stumbled along
 the papers and the bottles and the mystified throng
@@ -44,8 +41,8 @@ and I drink from the night instead
 
 if I was the fire chief I would let that place burn
 they've done it before and they'll never learn
-lord only know the kind of shit that
-they're smoking in bed
+lord only knows the kind of shit 
+that they're smoking in bed
 
 there's a pain in my liver and I can't still my hands
 you know, before I came to this place I had other plans
@@ -76,4 +73,3 @@ New Orleans night!
 New Orleans night!
 New Orleans night!
 New Orleans night!
-
