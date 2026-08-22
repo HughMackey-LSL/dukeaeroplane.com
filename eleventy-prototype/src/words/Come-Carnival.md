@@ -3,8 +3,6 @@ title: Come Carnival
 category: poetry
 ---
 
-
-
 there upon the cusp of evening
 my eyes are bright, my breast is heaving
 all the things i'm taking-leaving
@@ -45,8 +43,5 @@ there upon the cusp of evening
 I love this city like I love breathing
 if you don't believe me you don't believe
 
-
-
-*-Carnival 2024*
-
-*New Orleans*
+*-Carnival 2024
+ New Orleans*
