@@ -38,9 +38,36 @@ design/interactivity assets at the repo root are the real, original site files �
 
 ## Conventions
 
-- **Cache-busting is manual**: CSS/JS are linked as `style.css?v=N` /
-  `main.js?v=N` in `src/_includes/base.njk`. After editing either asset, bump the
-  version there (single place now that chrome is templated). Current: v=10.
+- **Cache-busting is automatic**: `base.njk` links assets through the
+  `cacheBust` filter in `.eleventy.js`, which appends a short hash of the file's
+  own bytes (`style.css?v=5a9e00c0`). It changes exactly when the file changes
+  and stays put when it doesn't, so there is nothing to remember after a CSS/JS
+  edit and deploys that touch no assets don't bust anyone's cache. Covers
+  `css/style.css`, `js/main.js`, `assets/extras.css`, `assets/announce.js`.
+  `../css` and `../js` are watch targets so a dev-server edit re-renders the
+  HTML rather than only re-copying the file. This replaced a hand-typed `?v=N`
+  that sat at 15 across several CSS commits — returning visitors kept the stale
+  stylesheet, which is exactly how it fails when nobody remembers to bump it.
+- **Words pieces keep their authored line breaks through CSS, not `<br>`.**
+  Tina's rich-text field writes a Shift+Enter soft break as a plain newline
+  inside the paragraph and parses that same newline back as a break — so the
+  editor shows a line break, but CommonMark calls a bare newline a *soft* break
+  and renders it as a space. `.work-body p` is `white-space: pre-line`
+  (`assets/extras.css`) to honour them. In the CMS: Enter = a new stanza (its
+  own `<p>`), Shift+Enter = a line within one; an empty paragraph is dropped on
+  save, so Enter twice will not make a gap. Do **not** reach for a global
+  markdown `breaks: true` instead — the legacy blog post
+  `src/posts/higher-ground-back-on-vinyl.md` is hand-wrapped at ~80 columns and
+  would sprout `<br>`s mid-sentence. Tina itself never wraps: it writes a
+  paragraph as one long line, so inside a Words piece every newline is
+  deliberate.
+- **Audio embeds**: SoundCloud is `.sc-embed`, Bandcamp is `.bc-embed`; both
+  appear on Music and the EPK. The Bandcamp player is fluid but stops growing at
+  700px, so `.bc-embed iframe` is capped there and centred — past that the frame
+  is wider than what it draws and the player sits pinned left. Its interior (the
+  `#474747` panel, the type, the controls) is a cross-origin iframe and cannot
+  be styled; `bgcol` only selects a light/dark theme and `linkcol` sets the link
+  colour.
 - Design tokens (preserve these — they're the original site's look):
   - Page bg `#242424`, content well `#000`, footer band `#BE1E2D`.
   - Heading red `--red-soft: #c23b3b` — 3.98:1 on black, passes WCAG AA for
@@ -125,8 +152,13 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   Verify carousel state via eval (`scrollLeft`, status text), not just
   screenshots. Screenshots often capture from the page top regardless of
   scroll position; the lightbox (position:fixed) screenshots fine.
-- After CSS/JS edits, the preview caches aggressively — bump `?v=` and
-  navigate with a `?fresh=' + Date.now()` query.
+- After CSS/JS edits the asset hash changes with the file, so a plain reload
+  picks the change up; if a page still looks stale, check the served `?v=`
+  against the file rather than reaching for a `?fresh=` query.
+- The dev server can keep serving a **stale layout** after an edit to
+  `_includes/` or `.eleventy.js` — it reports a rebuild but emits the old
+  markup. Restart it (or run `npm run build:eleventy` and read `_site/`) when a
+  template change doesn't show up.
 
 ## Status
 
@@ -136,9 +168,10 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
 - Media page photo gallery is a snap-scroll carousel (arrows, keyboard,
   swipe, live counter) with click-through to a lightbox.
 - Film-stills gallery (film page) and press photos (EPK) are grid + lightbox.
-- Music/EPK use compact lazy-loaded SoundCloud embeds; videos are fluid 16:9
-  YouTube iframes; the film trailer is an embedded YouTube video (the 47 MB
-  self-hosted mp4 was dropped — over Cloudflare Pages' 25 MB per-file limit).
+- Music/EPK use compact lazy-loaded SoundCloud and Bandcamp embeds; videos are
+  fluid 16:9 YouTube iframes; the film trailer is an embedded YouTube video (the
+  47 MB self-hosted mp4 was dropped — over Cloudflare Pages' 25 MB per-file
+  limit).
 - WCAG AA contrast pass done (see tokens above); EPK quotes all render red.
 - Film release references updated to 2026; footer says 2026.
 - The direct booking email (mailto link) was removed from `contact.njk` for
@@ -150,8 +183,12 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
 ### Outstanding / TODO
 1. **Formspree form confirmation**: Galen must click Formspree's one-time
    "confirm this form" email before submissions forward to his inbox.
-2. **Words page** is a "Lyrics coming soon" placeholder (faithful to the
-   original) — lyrics content may arrive later.
+2. **Words page** now carries real content, authored by Galen in TinaCMS and
+   grouped as Lyrics / Poetics / Short Works. `A-Congress-of-Cats.md` still has
+   every line as its own paragraph (written before the Shift+Enter rule was
+   documented) and reads uniformly double-spaced until he re-breaks it; the
+   other pieces are correct. `New-Orlean-Night.md` is missing an "s" in its
+   filename, which is also its URL — harmless, nothing links to it directly.
 3. **Dates page** — check whether the listed event is past and needs
    archiving.
 4. **No analytics** — old UA tag was dropped (dead since 2023). Add GA4/

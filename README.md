@@ -49,9 +49,13 @@ TinaCMS / Tina Cloud setup and the Cloudflare Pages build configuration.
 - **Pages** are `.njk` templates in `src/`; shared chrome lives once in
   `src/_includes/base.njk`. Global content (address, copyright) is in
   `src/_data/site.json` — editable through TinaCMS.
-- **Cache-busting is manual**: `css/style.css?v=N` / `js/main.js?v=N` in
-  `base.njk`. After editing either asset, bump the version there so browsers
-  pick up the change. (Current: v=10.)
+- **Cache-busting is automatic**: `base.njk` links assets through a `cacheBust`
+  filter that appends a hash of the file's own bytes, so the URL changes when
+  the file does and nothing has to be remembered after a CSS/JS edit.
+- **Words pieces** (lyrics/poetics) keep the line breaks their author typed:
+  in the CMS, Enter starts a stanza and Shift+Enter starts a line within one.
+  [`AGENTS.md`](AGENTS.md) covers why that relies on `white-space: pre-line`
+  rather than `<br>`; TINA-SETUP.md has the version to hand an editor.
 - Design tokens and the motion/texture "jazz layer" conventions are documented
   in [`AGENTS.md`](AGENTS.md) — the same `css/style.css` and `js/main.js` drive
   the Eleventy output, so that guidance still applies.
