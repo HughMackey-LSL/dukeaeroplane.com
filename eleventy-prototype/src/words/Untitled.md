@@ -3,6 +3,7 @@ title: Untitled
 category: poetry
 ---
 
+
 there in the place of the passing of time
 the game goes along with assurance
 manifold manifest myriad lines
@@ -22,3 +23,4 @@ the rhymes of a day are nothing at all
 a breath and a breeze in the clover
 but sometimes a breath becomes a squall
 only recognized when it's over
+
