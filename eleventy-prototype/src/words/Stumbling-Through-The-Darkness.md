@@ -27,7 +27,7 @@ and i have heard them sing
 
 strange things start to happen
 if you just avert your eyes
-they go rattling 'round your doorstep
+they go rattling ‘round your doorstep
 and shooting through the skies
 but if you reach out your hands
 and try to catch them unaware
@@ -44,7 +44,7 @@ you got the nerve to ask for more;
 i cannot give you answers
 i travel in disguise
 i’m doing funny dances
-and telling pretty lies"
+and i’m telling pretty lies"
 
 if i was holding aces
 do you think i would smile like that?
