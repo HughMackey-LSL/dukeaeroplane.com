@@ -4,20 +4,19 @@ category: lyrics
 album: 'New Orleans Night: Live in New Orleans'
 ---
 
-
 come away from the window
 there's nothing there to see
-it all adds up to nothing
-and means less than that to me
+if there's one thing that i've learned
+it is best you let it be
 i don’t give a damn
 if the sky is coming down
-or if the waters rise 
+or if the waters rise
 on every street in town
 leave it to the hipsters on the scene,
 the cops out on the beat,
 the junkies on the corner
 and the punk kids in the street
-sometimes it seems 
+sometimes it seems
 there's so little you can do
 but i’ve been lost out in this city
 and felt strange things coming through
@@ -28,13 +27,13 @@ and i have heard them sing
 
 strange things start to happen
 if you just avert your eyes
-they go rattling round your doorstep 
+they go rattling round your doorstep
 and shooting through the skies
 but if you reach out your hands
 and try to catch them unaware
 they vanish off the map
 and convince you they were never there
-it’s an uncertain glory 
+it’s an uncertain glory
 that i’m holding by the wrist
 and theres part of this story
 that i must have missed
@@ -62,7 +61,7 @@ is the best the rest can do
 like false prophets in the quarter
 who call damnation down
 or the tourists in disorder
-just trying to make it 
+just trying to make it
 out of town
 we're all lost in the wilderness
 we haven't got a clue
@@ -80,7 +79,7 @@ light another candle
 for this madness coming on
 i've heard it all before
 why must you talk and talk
-i’ve got better things to do 
+i’ve got better things to do
 than sit here running down the clock
 i don’t need the kind of future
 that’s tattooed on your skin
@@ -100,8 +99,3 @@ storm clouds gathered round
 if i had that kind of power
 i'd bring the heavens down
 and wash the trouble from this town
-
-
-
-
-
