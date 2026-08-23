@@ -27,7 +27,7 @@ and i have heard them sing
 
 strange things start to happen
 if you just avert your eyes
-they go rattling round your doorstep
+they go rattling 'round your doorstep
 and shooting through the skies
 but if you reach out your hands
 and try to catch them unaware
