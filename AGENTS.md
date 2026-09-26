@@ -1,6 +1,6 @@
 # AGENTS.md — dukeaeroplane.com
 
-Guidance for AI agents working on this project. Last updated: 2026-07-18.
+Guidance for AI agents working on this project. Last updated: 2026-09-26.
 
 ## What this is
 
@@ -68,6 +68,13 @@ design/interactivity assets at the repo root are the real, original site files �
   `#474747` panel, the type, the controls) is a cross-origin iframe and cannot
   be styled; `bgcol` only selects a light/dark theme and `linkcol` sets the link
   colour.
+- **Tina date fields go through `dateFieldUI`** in `tina/config.ts`: dates are
+  calendar days, but Tina's picker works in the browser's timezone and the
+  site reads UTC. Without it, the editor shows every date a day early west of
+  UTC (it did exactly that after the Tina 3 upgrade, until the helpers were
+  rewritten for the new picker). Optional date fields also need an explicit
+  `required: false`, or the picker shows an unset date as *today*. Details in
+  `eleventy-prototype/TINA-SETUP.md` ("Date fields", "Upgrading Tina").
 - Design tokens (preserve these — they're the original site's look):
   - Page bg `#242424`, content well `#000`, footer band `#BE1E2D`.
   - Heading red `--red-soft: #c23b3b` — 3.98:1 on black, passes WCAG AA for
@@ -179,6 +186,10 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
   Duke online. Do not re-add the address to any page.
 - Contact form is wired to Formspree (`formspree.io/f/mlgqbllz`, → Galen's
   Gmail) with a honeypot and inline AJAX success/error in `main.js`.
+- TinaCMS upgraded 2.10 → 3.14 (CLI 1.12 → 3.1) on 2026-09-26, ahead of
+  TinaCloud's October 2026 auth switch, after which sites below 3.12 can't log
+  in. Verified before pushing: the built site is byte-identical, Words line
+  breaks survive a save, and the date fields show and save the right day.
 
 ### Outstanding / TODO
 1. **Formspree form confirmation**: Galen must click Formspree's one-time
@@ -202,3 +213,7 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
    addresses; `src/index.njk` sets `og:url` to the `www` form. Worth picking one
    as canonical and redirecting the other (a Cloudflare redirect rule, or an
    absolute-URL entry in `_redirects`) if duplicate URLs matter.
+6. **TinaCloud login switch (October 2026)**: Galen signs in with email and
+   password, so at the switch he must set a new password from Tina's email
+   (and redo two-factor if he uses it). Hugh signs in with GitHub and is
+   unaffected. Nothing to change in the code; the upgrade above covers it.

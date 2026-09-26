@@ -63,6 +63,13 @@ the token in `.env` plays no part in it. This is a cleaner setup than a shared
 personal-access-token approach: there's no repo-write secret exposed to the
 browser at all.
 
+**October 2026 login change:** TinaCloud is moving to a new sign-in system.
+Anyone who signs in with an email and password (Galen) will get an email from
+Tina at the switch asking them to set a new password, and to set up two-factor
+again if they use it. GitHub sign-ins (Hugh) are unaffected. The site had to be
+on `tinacms` 3.12 or later to keep working after the switch; it is (see
+"Upgrading Tina" below).
+
 Production build command (used by Cloudflare Pages):
 ```
 npm run build        # = tinacms build && eleventy   → outputs to _site/
@@ -100,6 +107,39 @@ action on `main` in that dashboard.
 
 **Content-only edits don't need this** — editing shows/announcements/blog/words
 *entries* doesn't change the schema, so those deploy normally.
+
+### Date fields
+
+Every date field shares `dateFieldUI` in `config.ts`, which treats a date as a
+day on a calendar rather than an instant. Tina's picker works in the *browser's*
+timezone while the site reads dates in UTC, and without these helpers the editor
+shows dates a day early anywhere west of UTC. Two rules for new date fields:
+
+- Give it `ui: dateFieldUI`.
+- If it's optional, say `required: false` explicitly. Leaving `required` out
+  isn't enough: Tina 3's picker then shows an unset date as *today*, so an
+  empty "Hide after" reads as "this banner expires today".
+
+---
+
+## Upgrading Tina
+
+Update both packages together — they're released in step:
+
+```
+cd eleventy-prototype
+npm install tinacms@latest @tinacms/cli@latest
+npx tinacms dev        # regenerates tina/tina-lock.json, as for a schema change
+```
+
+Then commit `package.json`, `package-lock.json` and `tina/tina-lock.json`
+together. The CLI needs Node 22 or 24; Cloudflare Pages builds on 22.
+
+Before pushing, run `npm run dev` and check the editor itself, not just the
+build. In particular, open a show and confirm its date matches
+`src/_data/shows.json`: the 2 → 3 upgrade (September 2026) replaced the date
+picker and silently shifted every date back a day until `dateFieldUI` was
+rewritten for it.
 
 ---
 
