@@ -195,10 +195,9 @@ Josefin/Quicksand aesthetic, but make it eye-catching, dynamic, and loose
 1. **Formspree form confirmation**: Galen must click Formspree's one-time
    "confirm this form" email before submissions forward to his inbox.
 2. **Words page** now carries real content, authored by Galen in TinaCMS and
-   grouped as Lyrics / Poetics / Short Works. `A-Congress-of-Cats.md` still has
-   every line as its own paragraph (written before the Shift+Enter rule was
-   documented) and reads uniformly double-spaced until he re-breaks it; the
-   other pieces are correct. To rename a piece, the **Rename** action is in the
+   grouped as Lyrics / Poetics / Short Works. Every piece uses the Shift+Enter
+   rule correctly, including `A-Congress-of-Cats.md`, which Galen re-broke into
+   stanzas in September 2026. To rename a piece, the **Rename** action is in the
    collection **list** view's per-row menu (beside Duplicate/Delete), not in the
    editing form; it is gated on `ui.allowedActions.delete`, which defaults to
    true. Renaming changes the file and so the URL, since the permalink is
