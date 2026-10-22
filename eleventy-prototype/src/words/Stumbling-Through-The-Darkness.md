@@ -61,8 +61,7 @@ is the best the rest can do
 like false prophets in the quarter
 who call damnation down
 or the tourists in disorder
-just trying to make it
-out of town
+just trying to make it out of town
 we're all lost in the wilderness
 we haven't got a clue
 but let's see another card
